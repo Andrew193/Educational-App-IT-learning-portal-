@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Гиперссылки и Списки</title>
+<meta charset="windows-1251">
+</head>
+<body bgcolor="yellow">
+<a name="top"></a>
+<center>
+<header ><i> ГИПЕРССЫЛКИ </i></header>
+</center>
+<!-- горизонтальная линия-->
+<hr align="center" size="6" color="blue">
+<b>НА ЭТОЙ ЛАБОРАТОРНОЙ РАБОТЕ ВЫ НАУЧИТЕСЬ СОЗДАВАТЬ:</b>
+<font size=5 color="maroon">
+<ul>
+<li type="disc" > Внутренние ссылки;
+<li type="disc"> Ccылки на адрес электронной почты;
+<li type="disc"> Cсылки на ресурсы internet;
+<li type="disc"> Cсылки на архив;
+<li type="square"> Различные виды списков!
+</ul>
+</font>
+<hr align="center" size="6" color="blue">
+<center>
+<font color="red"><h3> ВНУТРЕННИЕ ССЫЛКИ </h3>
+</font>
+</center>
+<hr>
+Переход в <a href="#bottom"> конeц </a> документа
+<p> <hr>
+Переход к <a href="#S001"><b> ссылке 1</b></a>
+<hr>
+Здесь расположена <b>ссылка 1</b><a name="S001"></a>
+<hr align="center" size="4" color="blue">
+<center>
+<font color="red">
+<h3> CCЫЛКИ НА АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ</hЗ>
+</font>
+</center>
+<hr>
+<center>
+<font color="green"> <h4> Текстовый элемент привязки в ссылке</h4>
+</font>
+</center>6
+Свои предложения высылайте
+<a href="mailto:ok.tatarinova@gmail.com"> автору </a> этой лабораторной работы.
+<hr align="center" size="4" color="blue">
+<center>
+<font color="red"><h3> ССЫЛКИ НА РЕСУРСЫ INTERNET </h3>
+</font>
+</center>
+<hr>
+<a href=http://www.kpi.kharkov.ua hreflang="ua">ХПИ</a> страница
+<hr align="center" size="4" color="blue">
+<p> Переход в <a href="#top">начало</a> документа.<br />
+Переход к <a href="#bottom1"> спискам. </a>
+<hr>
+<center>
+<font color="red"><h3> ССЫЛКИ НА АРХИВ </h3>
+</font>
+</center>
+<hr>
+<p> Здесь находится <a href="test.rar"> архив </a>
+<hr align="center" size="4" color="blue">
+<center> <font color="red">
+<h3> ССЫЛКИ С ДОПОЛНИТЕЛЬНЫМИ АТРИБУТАМИ </h3>
+</font> </center>
+<hr>
+<p align="center">
+<a href="Aboutme.html" target="_blank" title="Перейдя по ссылке, Вы сможете
+узнать обо мне"> Обо мне </a>
+<hr align="center" size="4" color="blue">
+<a name="bottom1"></a>
+<center>
+<font size="6" color="lime"><i> СПИСКИ </i></font>
+</center>
+<hr align="center" size="6" color="blue">
+<center>
+<font color="red"><h3>МАРКИРОВАННЫЙ СПИСОК<h3> </font>
+</center>
+<hr>
+<ul type="circle">
+<li>Пункт 1 списка
+<li>Пункт 2 списка
+<li>Пункт 3 списка
+</ul>
+<hr align="center" size="4" color="blue">
+<center>
+<font color="red"><h3>НУМЕРОВАННЫЙ СПИСОК <br />
+(использован атрибут value =4, нумерация осуществляется римскими числами) </h3>
+</font> </center>
+<hr>7
+<ol type="I">
+<li value = 4>Пункт 1
+<li>Пункт 2
+<li>Пункт 3
+<li>Пункт 4
+</ol>
+<hr align="center" size="4" color="blue">
+<center>
+<font color="red"><h3> ВЛОЖЕННЫЙ СПИСОК</hЗ> </font>
+</center>
+<hr>
+<ul>
+<li>Пункт 1
+<ol>
+<li>Пункт 1.1
+<li>Пункт 1.2
+</ol>
+<li>Пункт 2
+<ol>
+<li> Пункт 2.1
+<li>Пункт 2.2
+</ol>
+<li>Пункт 3
+<ol>
+<li>Пункт 3.1
+<li>Пункт 3.2
+</ol>
+</ul>
+<hr align="center" size="4" color="blue">
+<center>
+<font color="red"><h3>CПИCOK ОПРЕДЕЛЕНИЙ</h3> </font> </center>
+<hr>
+<dl>
+<dt>Пункт 1
+<dd> Определение пункта 1
+<dd> Другое определение пункта 1
+<dt> Пункт 2
+<dd> Определение пункта 2
+<dt>Пункт 3
+<dd>Определение пункта 3
+</dl>
+<hr align="center" size="4" color="blue">
+<a name="bottom"></a>
+<footer>
+<h1 allign ="right" >Copyright кафедра систем и процессов управления
+</footer>
+</body>
+</html>

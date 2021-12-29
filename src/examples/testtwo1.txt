@@ -1,0 +1,142 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+<title> Форматирование текста </title>
+<Meta charset= "utf-8" >
+<Meta name="Author" content="Сидоров Иван">
+</head>
+<!--цвет фона серебристый, цвет текста синий-->
+<body bgcolor="silver" text="blue">
+<header>
+<font size=6 color="navy"> <b>Ф</b> </font>
+<font size=5> <i>ормат <font color="lime"> <sub>ирование</sub>
+</font></i> </font>
+<font size=2 color="purple"> т </font>
+<font size=3 color="blue"> е </font>
+<font size=4 color="green"> к </font>
+<font size=5 color="maroon"> с </font>
+<font size=6 color="fuchsia"> т </font>
+<font size=7 color="orange"> а </font>
+</header>
+<!--Горизонтальная линия-->
+<hr size ="5" width ="50%" align="center" color="maroon" noshade>
+<center>
+<font color="red"> <h4> ВНЕШНИЙ ВИД</h4> </font>
+</center>
+<hr>
+<p align="left"> <b> Полужирный шрифт</b></p>
+<p align="right"> <i> Курсивный шрифт</i></p>
+<p align=" justify "> <u> Подчеркнутое начертание </u> </p>
+<p align="right"> <s> перечеркнутое начертание </s> </p>
+<p align="center"> <tt> Печатная машинка</tt></p>
+<p > Обычный текст и<sub> элемент Sub </sub></p>
+<p align="right"> Обычный текст и<sup> элемент Sup </sup></p>
+<hr size ="4" width ="100%" align="center" color=" fuchsia" noshade>
+<center>
+<font color="red">
+<h4> ЗАДАНИЕ ЦВЕТА, РАЗМЕРА И ТИПА ШРИФТА </h4>
+</font>
+</center>
+<hr>13
+<p> <font size=4 color="green" face="courier"> Задан зеленый цвет шрифта
+размера 4 типа Arial</font> </p>
+<hr size ="4" width ="100%" align="center" color="fuchsia" >
+<center>
+<font color="red">
+<h4> ЗАДАНИЕ АБСОЛЮТНЫХ РАЗМЕРОВ ШРИФТОВ</h4>
+</font>
+</center>
+<hr>
+<p> <font size=7> Шрифт размера 7</font> </p>
+<p> <font size=6> Шрифт размера 6</font> </p>
+<p> <font size=5> Шрифт размера 5</font> </p>
+<p> <font size=4> Шрифт размера 4</font> </p>
+<p> <font size=3> Шрифт размера 3</font> </p>
+<p> <font size=2> Шрифт размера 2</font> </p>
+<p> <font size=1> Шрифт размера 1</font> </p>
+<hr size ="4" width ="100%" align="center" color="fuchsia">
+<center>
+<font color="red">
+<h4> ЗАДАНИЕ ОТНОСИТЕЛЬНЫХ РАЗМЕРОВ ШРИФТОВ</h4>
+</font>
+</center>
+<hr>
+<p> <font size=+4> Шрифт размера +4</font> </p>
+<p> <font size=+3> Шрифт размера +3</font> </p>
+<p> <font size=+2> Шрифт размера +2</font> </p>
+<p> <font size=+1> Шрифт размера +1</font> </p>
+<p> <font size=+0> Шрифт размера +0</font> </p>
+<p> <font size=-1> Шрифт размера -1</font> </p>
+<p> <font size=-2> Шрифт размера -2</font> </p>
+<hr size ="4" width ="100%" align="center" color="fuchsia">
+<center>
+<font color="red">
+<h4> ОПРЕДЕЛЕНИЕ СТРУКТУРЫ ТЕКСТА</h4>
+</font>
+</center>
+<hr>
+<hgroup>
+<h1>Заголовок 1 </h1>
+<h2>Заголовок 2 </h2>
+<h3>Заголовок 3 </h3>
+<h4>Заголовок 4 </h4>14
+<h5>Заголовок 5 </h5>
+<h6>Заголовок 6 </h6>
+</hgroup>
+<hr>
+<p> Элемент Br обеспечивает разрыв<br />строки </p>
+<hr>
+<p> <nobr> Эта строка хоть и слишком длинная, но не должна разрываться
+браузером, потому что текст этой строки находится внутри элемента Nobr. Иногда
+строка может оказаться очень длинной и неудобной для чтения, поэтому внутри
+элемента nobr можно использовать элемент wbr, который указывает место для
+возможного переноса строки. Элементом Wbr укажем место <wbr> для переноса
+строки </nobr></p>
+<hr width ="200%" >
+<pre> Использование элемента Pre.
+Он запрещает форматирование
+текста браузером и выводит его так,
+как определил пользователь.
+</pre>
+<hr>
+<p> Направление текста можно изменить
+<bdo dir="RTL"> Направление текста можно изменить </bdo></p>
+<hr size ="4" width ="100%" align="center" color="fuchsia">
+<center>
+<font color="red">
+<h4> ИСПОЛЬЗОВАНИЕ ЛОГИЧЕСКИХ ЭЛЕМЕНТОВ ФОРМАТИРОВАНИЯ
+</h4>
+</font>
+</center>
+<hr>
+<p align="center"> <abbr title="Hyper text Markup Language - язык разметки
+гипертекста">HTML</abbr> </p>
+<p>Михаил Булгаков: <cite>"Это был ни с чем по прелести не сравнимый запах
+только что отпечатанных денег"</cite></p>
+<p>Михаил Булгаков: <q >Никогда и ничего не просите, никогда и ничего,
+особенно у тех, кто сильнее Вас, сами все предложат и сами все дадут</q> </p>
+<p> <strong>Выделение текста жирным для поисковиков</strong> </p>
+<p><em>Выделение текста курсивом для поисковиков</em><p>
+<hr size ="4" width ="100%" align="center" color="fuchsia">
+<center>
+<font color="red">
+< h4> ИСПОЛЬЗОВАНИЕ НОВЫХ ТЕГОВ HTML 5
+</h4>15
+</font>
+</center>
+<hr>
+<article> Данный тег задаёт содержание сайта вроде новости, статьи, записи
+блога, форума и другие.
+<aside>Определяет блок сбоку от контента для размещения рубрик, ссылок на
+архив, меток и другой информации. Такой блок, как правило, называется «сайдбар»
+или «боковая панель».</aside>
+</article>
+</article>
+<p> С помощью тэга <mark>mark</mark> Вы сможете выделять на страницах
+<mark>важный</mark> текст.</p>
+<hr size ="4" width ="100%" align="center" color="fuchsia">
+<footer>
+Copyright кафедра систем и процессов управления
+</footer>
+</body>
+</html>

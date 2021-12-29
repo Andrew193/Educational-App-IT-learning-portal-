@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Изображения, таблицы, мультимедиа </title>
+<meta charset="windows-1251">
+</head>
+<body bgcolor="#008080" text="#800080">
+<a name="top"></a>
+<a name="bottom1"></a>
+<center>
+<font color="Fuchsia"><h2> ДОБАВЛЕНИЕ ИЗОБРАЖЕНИЙ </h2>
+</font>
+</center>
+<hr>
+<p>Переход в <a href="#bottom"> конeц</a> документа</p>
+<center>
+<img src="FotoHtml.jpg" width="300" height="200" vspace="40" аlt="Рисунок html">
+</center>
+<center>
+<font color="Navy" size="+2">
+<b> Нажмите на картинку, чтобы перейти на сайт творчества Пушкина.
+</b>
+</font>
+</center>
+<a href="http://pushkin135.narod.ru/" target="_blank">
+<img src="Pushkin.jpeg" width="150" heigth="200" align="left" hspace="20" alt="Поэт Пушкин
+А.С." border="0">
+</a>
+<p> <cite>Я ВАС ЛЮБИЛ: ЛЮБОВЬ ЕЩЕ, БЫТЬ МОЖЕТ <br />
+В ДУШЕ МОЕЙ УГАСЛА НЕ СОВСЕМ; <br />
+НО ПУСТЬ ОНА ВАС БОЛЬШЕ НЕ ТРЕВОЖИТ; <br />
+Я НЕ ХОЧУ ПЕЧАЛИТЬ ВАС НИЧЕМ. <br /> </cite></p>
+<p><cite>Я ВАС ЛЮБИЛ БЕЗМОЛВНО, БЕЗНАДЕЖНО, <br />
+ТО РОБОСТЬЮ, ТО РЕВНОСТЬЮ ТОМИМ; <br />
+Я ВАС ЛЮБИЛ ТАК ИСКРЕННО, ТАК НЕЖНО, <br />
+КАК ДАЙ ВАМ БОГ ЛЮБИМОЙ БЫТЬ ДРУГИМ.</cite>
+</p>
+<hr align="center" size="4" color="white"> <center>
+<font color="Fuchsia">
+<h2> ФОРМИРОВАНИЕ ТАБЛИЦ</h2>
+</font>
+</center>
+<hr>
+<center>
+<font color="blue"> <h3> Стандартная таблица</h3>
+</font> </center>
+<table border="4" cellspacing="3">8
+<caption> Заголовок таблицы </caption>
+<tr> <th bgcolor="lime ">3аголовок 1
+<th bgcolor="yellow"> Заголовок 2
+<tr><td> Ячейка 1
+<td> Ячейка 2
+</table >
+<hr>
+<center>
+<font color="blue"> <h3> Таблица с логическим форматированием</h3>
+</font>
+</center>
+<table border="7" cellspacing="3">
+<thead>
+<tr>
+<th>Столбец 1</th>
+<th> Столбец 2</th>
+<th> Столбец 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ячейка 1.1</td>
+<td> Ячейка 1.2</td>
+<td> Ячейка 1.3</td>
+</tr>
+<tr>
+<td> Ячейка 2.1</td>
+<td> Ячейка 2.1</td>
+<td> Ячейка 2.1</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td>Итог по ячейке 2.1</td>
+<td>Итог по ячейке 2.2</td>
+<td>Итог по ячейке 2.3</td>
+</tr>
+</tfoot>
+</table>
+<hr>
+<center>
+<font color="blue"> <h3> Специальная таблица</h3>
+</font>
+</center>
+<table border="4" cellspacing="2" cellpadding="10" align="center">
+<caption> <strong>Заголовок таблицы </strong></caption>
+<tr><th bgcolor="lime">
+<th bgcolor="lime">3aгoлoвoк 1
+<th bgcolor="lime">3aгoлoвoк 2
+<tr><th bgcolor="lime">3aгoлoвoк 3
+<td>Ячейка 1
+<td> Ячейка 2
+</table>9
+<center>
+<hr>
+<font color="blue"> <h3> Объединение ячеек</h3>
+</font>
+</center>
+<table border="4" cellspacing="0" width=60%>
+<tr> <td bgcolor="yellow"><b>3aгoлoвoк 1</b>
+<td bgcolor="yellow>"><b>3aгoлoвoк 2</b>
+<tr> <td rowspan="3" bgcolor="lime" valign="top"> Ячейка 1
+<td valign="left"> Ячейка 2
+<tr> <td valign="right"> Ячейка 3 – Возврат к <a href="#bottom1"> изображениям</a> !
+<tr> <td valign="baseline"> Ячейка 4 – Переход к <a href="#bottom2"> мультимедиа</a>!
+</table>
+<hr align="center" size="4" color="white">
+<a name="bottom2"></a>
+<center>
+<font color="Fuchsia">
+<h2> ДОБАВЛЕНИЕ МУЛЬТИМЕДИА</h2>
+</font>
+</center>
+<hr>
+<center>
+<font color="blue"> <h3>Аудиоролик</h3>
+</font>
+</center>
+<p>
+<font size="+2"> Тег audio служит для вставки на Web-страницу аудиоролика! </font>
+</p>
+<center>
+<font size="+2"> <u>Вы можете прослушать аудиоролик!</u></font>
+</center>
+<audio src="sound.wav" autoplay controls></audio>
+<hr>
+<center>
+<font color="blue"> <h3>Видеоролик</h3>
+</font>
+</center>
+<p>
+<font size="+2"> Тег video служит для вставки на Web-страницу видеоролика! </font> </p>
+<center>
+<font size="+2"> <u>Вы можете просмотреть видеоролик!</u></font>
+</center>
+<video src="film.ogv" controls width="50%" heigth="50%">
+Ваш Web-обозреватель не
+поддерживает вывод мультимедийных данных средствами HTML 5. Попробуйте другой!
+</video>
+<hr align="center" size="4" color="white">
+<a name="bottom"></a>
+<center>
+Переход в <a href="#top">начало</a> документа.<br />
+</center>
+</body>
+</html>

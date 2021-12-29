@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> Форматирование с использованием CSS</title>
+<meta charset="windows - 1251">
+<style type="text/css">
+body {
+background-color: purple; /* Цвет фона */
+background-attachment: fixed; /* фиксируем фон */
+background-image: url('FotoHtml.jpg'); /* Путь к фоновому рисунку */
+background-repeat: no-repeat; /* Отменяем повторение фона */
+background-position: right bottom /* Положение фона */
+}
+h1 {
+text-align: center;
+margin-top: 0px; /* Отступ сверху */
+margin-bottom: 1em; /* Отступ снизу */
+color: lime;
+font-family: Arial, Helvetica, Verdana, Sans-Serif;
+font-size: 150%;
+font-weight: lighter }
+h3 {font-family: 'courier new'; font-size: 100%; font-weight: lighter }
+p {
+color: yellow;
+margin: 0.5em 0px 1em /* Отступ сверху, справа-слева и снизу */
+}
+p.line {
+border-left: solid 5px black; /* Линия слева от текста */
+margin-left: 20px; /* Отступ слева от края до текста */
+padding-left: 7px /* Расстояние от линии до текста */
+}
+hr {
+color: red; /* Цвет линии для */
+height: 3px; /* Высота линии */
+width: 800px; /* Ширина линии */
+text-align: center /* Выравнивание по центру */
+}
+.line_b { border-bottom: 3px groove blue }
+.underline {
+border-bottom: 1px dashed blue /* Добавляем пунктирную линию под
+текстом */9
+}
+#cursive {font-style: italic} /* Курсивный текст */
+#oblique {font-style: oblique} /* Наклонный текст */
+</style>
+</head>
+<body>
+<h1> Это заголовок первого уровня </h1>
+<hr>
+<h3> Это заголовок третьего уровня, далее идут элементы
+форматирования </h3>
+<hr>
+<p> <span class="line_b"> Горизонтальная линия </span> внизу текста.
+</p>
+<p class="line"> Вертикальная линия слева от текста. </p>
+<p style="text-indent: 20mm"> Отступ первой строки в 20 мм. </p>
+<p><span style="letter-spacing: 10mm"> Установка расстояния в 10
+миллиметров между символами текста. </span></p>
+<p><span style="word-spacing: 20mm"> Установка расстояния в 20
+миллиметров между словами. </span></p>
+<p><span style="text-transform: capitalize"> Каждое слово начинается с
+прописной буквы </span></p>
+<p><span style="font-variant: small-caps"> написание текста малыми
+прописными буквами </span></p>
+<p><span style="text-decoration: underline"> Подчеркнутый текст
+</span></p>
+<p><span style="font-size: 20pt"> Задаем размер текста в 20 pt</span></p>
+<p>Выделение слов <span style="font-weight: bold; font-style: italic">
+наклонным полужирным </span> шрифтом</p>
+<p><span style="font-family: ‘Lucida Console’, Monospace"> Гарнитура
+шрифта </span></p>
+<p>Часть текста <span style="color: red"> красного </span> цвета</p>
+<span class="underline">Динамический HTML</span> - способ управления
+свойствами объектов на Web-странице, такие как, графика, текст, элементы
+форм и другое, без необходимости обновления всей страницы.
+<hr>
+<p id=cursive><span style="font-style: normal"> Курсивный текст </span>
+хорошо использовать для цитат и прямой речи </p>
+<p id=oblique>Наклонный шрифт пригодится для создания ненавязчивого
+выделения в тексте </p>
+<hr>
+</body>
+</html>

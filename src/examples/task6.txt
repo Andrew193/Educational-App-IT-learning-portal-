@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> Списки и гипрессылки с использованием CSS</title>
+<meta charset="windows - 1251">
+<style type="text/css">
+body { background-color: #00FA9A; /* цвет фона */ }
+h1 { text-align: center;
+margin-top: 0px; /* отступ сверху */
+margin-bottom: 1em; /* отступ снизу */
+color: #A52A2A;
+font-family: Arial, Helvetica, Verdana, Sans-serif;
+font-size: 150%;
+font-weight: bold }
+h2 {
+text-align: center;
+margin-top: 0.5em; /* отступ сверху */
+margin-bottom: 0.5em; /* отступ снизу */
+color: #BA3B45;
+font-family: Arial, Helvetica, Verdana, Sans-serif;
+font-size: 125%;
+font-weight: lighter }
+ol li {font-weight: bold} /* выделение пунктов */
+ol ol {list-style: lower-alpha} /* тип нумерации подпунктов */
+ol ol li {font-weight: normal} /* оформление подпунктов */
+ul {font-family: Georgia, "Times New Roman", Times, Serif
+/* путь к файлу с маркером */
+margin-top: 0.5em /* отступ от верхнего края */
+margin-bottom: 0.5em /* отступ от нижнего края */
+margin-left: 40px /* отступ от левого края */ }
+li{ padding-left: 20px /* отступ от маркера до текста */ }
+li span{ color: blue /* цвет текста в списке */ }
+p {
+color: #6628A7;
+margin: 0.5em 0px 1em /* отступ сверху, справа-слева и снизу */
+}
+hr {
+color: #8B008B; /* цвет линии для */
+height: 5px; /* высота линии */
+width: 100%; /* ширина линии */
+background-color: #9b9b9b; }
+.underline {
+border-bottom: 1px dashed blue /* добавляем пунктирную линию под текстом */ }
+.ul1{
+border-radius: 5px; /* добавляем закругление */6
+box-shadow: rgba(0,0,0,5.2) 0px 1px 3px; /* параметры тени*/
+list-style-image: url(marker.jpg);
+list-style-position: inside;
+width: 200px; margin: 20px;}
+#cursive {font-style: italic} /* курсивный текст */
+a:link {color: #f00 /* цвет ссылок */ }
+a:visited { color: #666 /* цвет посещенных ссылок */ }
+a:hover {
+border-bottom: 1px dashed blue; /* добавляем пунктирную линию под текстом */
+font-size: 24px; /* размер шрифта */
+font-weight: bold; /* жирное начертание */
+color: red /* цвет ссылки */ }
+.movelink {cursor: move} /* изменение курсора при наведении на него мышью. вид
+двунаправленной стрелки */
+.helplink {cursor: help} /* изменение курсора при наведении на него мышью. вид
+вопроса */
+</style> </head>
+<body>
+<h1> СПИСКИ</h1>
+<hr> <h2> Маркированный список</h2> <hr>
+<ul> Виды списков
+<li style="list-style: circle">
+<span class="underline">Маркированный</span></li>
+<li style="list-style: circle">
+<span class="underline">Нумерованный</span></li>
+<li style="list-style: circle">
+<span class="underline">Многоуровневый</span></li>
+</ul>
+<hr> <h2> Многоуровневый список</h2> <hr>
+<ol> <li> Пункт 1 </li>
+<ol>
+<li> Подпункт a </li> <li> Подпункт b </li>
+</ol>
+<li> Пункт 2 </li>
+<ol>
+<li id=cursive> Подпункт a </li>
+<li id=cursive> Подпункт b </li>
+</ol> </ol>
+<hr><h2> Специальный список</h2> <hr>
+<ul class="ul1">
+<li>Строка списка 1</li>
+<li>Строка списка 2</li>
+<li>Строка списка 3</li>
+<li>Строка списка 4</li>
+</ul>
+<hr> <h1> ГИПЕРССЫЛКИ</h1> <hr>
+<a href="AboutMe.html">Подчеркнутая ссылка</a>
+<p><a href="AboutMe.html" class="movelink">ПЕРЕМЕСТИТЕ ЭТОТ ТЕКСТ</a></p>
+<p><a href="AboutMe.html" class="helplink">СПРАВКА</a></p>
+<hr> <a href="#list1">Переход к Спискам </a><br> <hr>
+</body> </html>
