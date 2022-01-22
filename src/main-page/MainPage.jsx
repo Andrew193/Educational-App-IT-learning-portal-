@@ -7,89 +7,56 @@ import {useHistory} from "react-router-dom";
 import {IDE_PATH} from "../App";
 import {importAll} from "../utils";
 import SimpleViewerContainer from "../components/SimpleViewerContainer";
-
-const labFiles = importAll(require.context('../labs/', false, /\.(pdf)$/));
-const taskFiles = importAll(require.context('../tasks/', false, /\.(pdf)$/));
-const testFiles = importAll(require.context('../examples/', false, /\.(txt)$/));
+import axios from "axios";
+import Typography from "@mui/material/Typography";
 
 function MainPage() {
     const [accordionConfigObject, setAccordionConfigObject] = useState(null);
-    const history = useHistory();
 
     useEffect(() => {
-        setAccordionConfigObject(() => {
-            const newAccordionConfig = {};
-            const labs = Object.values(labFiles);
-            const tasks = Object.values(taskFiles);
-            const examples = Object.values(testFiles);
+        async function getData() {
+            const response = await axios.get("https://qwertyblut.herokuapp.com/api/labs/");
 
-            labs?.forEach((lab, index) => {
-                const labIndex = lab.default.split("/")[3].split(".")[0].replace(/\D+/g, "");
-                let taskPath = null;
-                let examplesArray = [];
-
-                tasks.forEach((task) => {
-                    const tempIndex = task.default.split("/")[3].split(".")[0].replace(/\D+/g, "");
-                    if (tempIndex === labIndex) {
-                        taskPath = task.default;
-                    }
-                })
-
-                examples.forEach((task) => {
-                    const tempIndex = task.default.split("/")[3].split(".")[0].replace(/\D+/g, "");
-                    if (tempIndex === labIndex) {
-                        examplesArray.push(task.default);
-                    }
-                })
-
-                newAccordionConfig[index] = {
-                    title: `Лабораторная работа №${labIndex}`,
-                    content:
-                        <CustomizedAccordions
+            if (`${response.status}`.startsWith("2")) {
+                setAccordionConfigObject(response.data.labs.map((lab) => {
+                    return {
+                        title: lab.data.local_src.fileName.split(".")[0],
+                        content:<CustomizedAccordions
                             accordionConfigObject={{
                                 0: {
                                     title: "Лекция",
-                                    content: <PdfPreviewContainer
-                                        pdfFileSrc={lab.default}
-                                    />
-                                },
-                                1: {
-                                    title: "Практика",
-                                    content:
-                                        <>
-                                            <PdfPreviewContainer
-                                                pdfFileSrc={taskPath}
-                                            />
-                                            <Button
-                                                variant="outlined"
-                                                onClick={() => {
-                                                    history.push(IDE_PATH)
-                                                }}
-                                            >Начать онлайн!</Button>
-                                        </>
-                                },
-                                2: {
-                                    title: "Примеры",
-                                    content: <SimpleViewerContainer
-                                        examplesArray={examplesArray}
-                                    />
+                                    content: <Typography>
+                                        <div>
+                                            <Button><a href={lab.data.local_src.webViewLink}>Просмотреть лекцию</a></Button>
+                                            <Button><a href={lab.data.local_src.webContentLink}>Скачать лекцию</a></Button>
+                                        </div>
+                                    </Typography>
                                 }
                             }}
                         />
-                }
-            })
-            return newAccordionConfig;
-        })
+                    }
+                }))
+
+            }
+        }
+
+        getData();
+
     }, [])
 
     return (
         <>
+            <h1
+            style={{
+                marginTop:"unset"
+            }}
+            >Главная</h1>
             {accordionConfigObject &&
-            <>
-                <CustomizedAccordions
-                    accordionConfigObject={accordionConfigObject}
-                />
-            </>
+                <>
+                    <CustomizedAccordions
+                        accordionConfigObject={accordionConfigObject}
+                    />
+                </>
             }
         </>
     )

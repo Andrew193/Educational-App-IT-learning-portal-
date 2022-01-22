@@ -1,4 +1,4 @@
-export function uploadLab(lab) {
+export function uploadLab(lab, callBack) {
     let formData = new FormData();
     formData.append("file", lab.files[0]);
 
@@ -11,4 +11,5 @@ export function uploadLab(lab) {
     }).catch((error) => {
         console.log(error)
     })
+        .finally(() => callBack())
 }
