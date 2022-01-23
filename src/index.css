@@ -21,60 +21,6 @@ code {
     margin-right: 10px;
 }
 
-.header_root {
-    display: flex;
-    transition: all ease 0.2s !important;
-}
-
-.header_appBar {
-    z-index: 1201;
-    transition: all ease 0.2s;
-    height: 65px;
-}
-
-.header_logoPlace {
-    flex-grow: 1;
-}
-
-.header_logoPlace img {
-    margin-left: calc(3%);
-}
-
-.header_appBarShift {
-    padding-left: 240px;
-    width: calc(100% - 240px);
-}
-
-.header_menuButton {
-    margin-right: 36px;
-}
-
-.header_hide {
-    display: none !important;
-}
-
-.header_drawer {
-    width: 240px;
-    flex-shrink: 0;
-    white-space: nowrap;
-    transition: all ease 0.2s;
-}
-
-.header_drawer > div {
-    transition: all ease 0.2s;
-}
-
-.header_drawerOpen {
-    width: 240px;
-    transition: all ease 0.2s;
-}
-
-.header_drawerClose {
-    overflow-x: hidden;
-    width: 70px;
-    z-index: 1099;
-}
-
 .runBtn {
     padding: 5px 15px;
     background-color: #4fbf4f;
@@ -130,4 +76,20 @@ code {
     display: flex;
     flex-direction: column;
     padding: 10px;
+}
+
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+
+.back-green {
+    background-color: #ceffce!important;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.f-direction {
+    flex-direction: column;
 }

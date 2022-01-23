@@ -1,0 +1,83 @@
+import {Box, TextField} from "@mui/material";
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import {createUser} from "./loginService";
+
+const validation = Yup.object().shape({
+    login: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+    password: Yup.string()
+        .required('Required'),
+})
+
+function LoginTab() {
+    const formik = useFormik({
+        initialValues: {
+            login: "",
+            password: ""
+        },
+        validationSchema: validation,
+        onSubmit: (credentials) => {
+            createUser(credentials)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+    })
+
+    return (
+        <Box
+            className={"d-flex f-direction"}
+        >
+            <form onSubmit={formik.handleSubmit}>
+                <Box>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="login"
+                        label="Почта"
+                        type="email"
+                        fullWidth
+                        variant="standard"
+                        onChange={formik.handleChange}
+                        value={formik.values.login}
+                    />
+                    {formik.touched.login && formik.errors.login ? (
+                        <div className={"color-red text-left font-size-12"}>{formik.errors.login}</div>
+                    ) : null}
+                </Box>
+                <Box>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="password"
+                        label="Пароль"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        className={"margin-top-10"}
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                        <div className={"color-red text-left font-size-12"}>{formik.errors.password}</div>
+                    ) : null}
+                </Box>
+                <Button
+                    type={"submit"}
+                    disableElevation
+                    size="small"
+                    className={"margin-top-10"}
+                >Отправить</Button>
+            </form>
+        </Box>
+    )
+}
+
+export default LoginTab;

@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import {AppBar, Box, Divider, Drawer, IconButton, Menu, MenuItem, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Divider, Drawer, IconButton, Menu, MenuItem, Toolbar} from "@mui/material";
 import {AccountCircle} from "@mui/icons-material";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import clsx from "clsx";
-import {useHistory} from "react-router-dom";
 import HomeIcon from '@material-ui/icons/Home';
 import GroupIcon from '@material-ui/icons/Group';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+
 import ContainerList from "../components/list/List";
 
 const sidebarItems = [
@@ -19,6 +20,11 @@ const sidebarItems = [
         text: 'Users',
         path: "/users",
         icon: <GroupIcon/>
+    },
+    {
+        text: 'Admin Panel',
+        path: "/admin_panel",
+        icon:<AdminPanelSettingsIcon />
     }
 ];
 

@@ -21,14 +21,20 @@ function MainPage() {
                 setAccordionConfigObject(response.data.labs.map((lab) => {
                     return {
                         title: lab.data.local_src.fileName.split(".")[0],
-                        content:<CustomizedAccordions
+                        content: <CustomizedAccordions
                             accordionConfigObject={{
                                 0: {
                                     title: "Лекция",
                                     content: <Typography>
                                         <div>
-                                            <Button><a href={lab.data.local_src.webViewLink}>Просмотреть лекцию</a></Button>
-                                            <Button><a href={lab.data.local_src.webContentLink}>Скачать лекцию</a></Button>
+                                            <Button
+                                                variant={"outlined"}
+                                                className={"margin-right-10"}
+                                            ><a href={lab.data.local_src.webViewLink}>Просмотреть лекцию</a></Button>
+                                            <Button
+                                                variant={"outlined"}
+                                            ><a href={lab.data.local_src.webContentLink}>Скачать
+                                                лекцию</a></Button>
                                         </div>
                                     </Typography>
                                 }
@@ -47,9 +53,9 @@ function MainPage() {
     return (
         <>
             <h1
-            style={{
-                marginTop:"unset"
-            }}
+                style={{
+                    marginTop: "unset"
+                }}
             >Главная</h1>
             {accordionConfigObject &&
                 <>

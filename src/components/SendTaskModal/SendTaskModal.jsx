@@ -11,6 +11,20 @@ import * as Yup from 'yup';
 import {Box} from "@material-ui/core";
 import {AdminEmail} from "../../index";
 
+const validation = Yup.object().shape({
+    name: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+    group: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required')
+})
+
 export default function SendTaskModal(props) {
 
     const formik = useFormik({
@@ -27,19 +41,7 @@ export default function SendTaskModal(props) {
 `
             window.open(`mailto:${AdminEmail}?subject=${subject}&body=${body}`);
         },
-        validationSchema: Yup.object().shape({
-            name: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            email: Yup.string()
-                .email('Invalid email')
-                .required('Required'),
-            group: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required')
-        })
+        validationSchema: validation
     });
 
     const {

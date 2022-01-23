@@ -1,0 +1,53 @@
+.header_root {
+    display: flex;
+    transition: all ease 0.2s !important;
+}
+
+.header_appBar {
+    z-index: 1201;
+    transition: all ease 0.2s;
+    height: 65px;
+}
+
+.header_logoPlace {
+    flex-grow: 1;
+}
+
+.header_logoPlace img {
+    margin-left: calc(3%);
+}
+
+.header_appBarShift {
+    padding-left: 240px;
+    width: calc(100% - 240px);
+}
+
+.header_menuButton {
+    margin-right: 36px;
+}
+
+.header_hide {
+    display: none !important;
+}
+
+.header_drawer {
+    width: 240px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: all ease 0.2s;
+}
+
+.header_drawer > div {
+    transition: all ease 0.2s;
+}
+
+.header_drawerOpen {
+    width: 240px;
+    transition: all ease 0.2s;
+}
+
+.header_drawerClose {
+    overflow-x: hidden;
+    width: 70px;
+    z-index: 1099;
+}
