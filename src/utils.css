@@ -10,6 +10,14 @@
     text-align: center !important;
 }
 
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper ul{
+    display: grid!important;
+}
+
+.d-grid{
+    display: grid!important;
+}
+
 .font-size-12 {
     font-size: 12px;
 }

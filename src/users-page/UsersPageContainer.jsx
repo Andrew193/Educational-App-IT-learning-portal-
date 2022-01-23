@@ -1,7 +1,8 @@
 import HOCs from "../HOCs";
 import React, {useEffect, useState} from "react";
-import {getAllUsers} from "./usersPageService";
+import {getAllUsers, userColumns} from "./usersPageService";
 import CustomizedAccordions from "../components/Accordion/Accordion";
+import StickyHeadTable from "../components/StickyTable";
 
 
 function UsersPageContainer() {

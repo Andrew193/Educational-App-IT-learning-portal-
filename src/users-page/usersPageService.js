@@ -1,8 +1,30 @@
 import CustomizedAccordions from "../components/Accordion/Accordion";
-import Typography from "@mui/material/Typography";
-import {Button} from "@material-ui/core";
 import React from "react";
 import UsersTable from "../components/UsersTable";
+import StickyHeadTable from "../components/StickyTable";
+
+export const userColumns = [
+    {id: 'name', label: 'Id', minWidth: 170},
+    {id: 'code', label: 'Группа', minWidth: 100},
+    {
+        id: 'population',
+        label: 'Имя',
+        minWidth: 170,
+        format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+        id: 'size',
+        label: 'Фамилия',
+        minWidth: 170,
+        format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+        id: 'density',
+        label: 'Почта',
+        minWidth: 170,
+        format: (value) => value.toFixed(2),
+    },
+];
 
 export function getAllUsers(setUsers, setIsLoading) {
     setIsLoading(true);
@@ -26,8 +48,17 @@ export function getAllUsers(setUsers, setIsLoading) {
                 const result = {
                     0: {
                         title: "Все пользователи",
-                        content: <UsersTable
-                            rows={users}
+                        content: <StickyHeadTable
+                            rows={users.map((user) => (
+                                {
+                                    name: user.id,
+                                    code: user.data.group,
+                                    population: user.data.name,
+                                    size: user.data.surname,
+                                    density: user.data.login
+                                }
+                            ))}
+                            columns={userColumns}
                         />
                     }
                 }
@@ -39,7 +70,8 @@ export function getAllUsers(setUsers, setIsLoading) {
                         content: <UsersTable
                             rows={userConfig[1].content}
                         />
-                    }})
+                    }
+                })
 
                 setUsers({
                     data: {
