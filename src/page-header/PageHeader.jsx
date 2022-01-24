@@ -9,6 +9,8 @@ import GroupIcon from '@material-ui/icons/Group';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 import ContainerList from "../components/list/List";
+import {useHistory} from "react-router-dom";
+import {Pages} from "../vars";
 
 const sidebarItems = [
     {
@@ -24,13 +26,14 @@ const sidebarItems = [
     {
         text: 'Admin Panel',
         path: "/admin_panel",
-        icon:<AdminPanelSettingsIcon />
+        icon: <AdminPanelSettingsIcon/>
     }
 ];
 
 function PageHeader(props) {
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const history = useHistory();
 
     const handleDrawerOpen = () => setOpen(true);
     const handleMenu = (event) => {
@@ -81,7 +84,10 @@ function PageHeader(props) {
                                 anchorEl={anchorEl}
                                 open={!!anchorEl}
                             >
-                                <MenuItem onClick={handleMenu}>Profile</MenuItem>
+                                <MenuItem onClick={() => {
+                                    handleMenu();
+                                    history.push(Pages.USER)
+                                }}>Profile</MenuItem>
                                 <MenuItem onClick={handleMenu}>Logout</MenuItem>
                             </Menu>
                         </IconButton>

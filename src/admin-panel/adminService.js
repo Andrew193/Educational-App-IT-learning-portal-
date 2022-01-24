@@ -1,8 +1,10 @@
+import {LABS_URL} from "../vars";
+
 export function uploadLab(lab, callBack) {
     let formData = new FormData();
     formData.append("file", lab.files[0]);
 
-    fetch("https://qwertyblut.herokuapp.com/api/labs/", {
+    fetch(LABS_URL, {
             method: "POST",
             body: formData
         }

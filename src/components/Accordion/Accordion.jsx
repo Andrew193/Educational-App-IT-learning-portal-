@@ -58,9 +58,12 @@ export default function CustomizedAccordions(props) {
         <Box>
             {
                 Object.values(accordionConfigObject).map((accordionRow, index) => (
-                    <Accordion expanded={expanded === 'panel'+ (index + 1)} onChange={handleChange('panel' + (index + 1))}>
+                    <Accordion expanded={expanded === 'panel' + (index + 1)}
+                               onChange={handleChange('panel' + (index + 1))}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>{accordionRow.title}</Typography>
+                            <Typography
+                                id={accordionRow.title.split(" ")[1]}
+                            >{accordionRow.title}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>{accordionRow.content}</Typography>

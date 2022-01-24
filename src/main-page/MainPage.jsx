@@ -1,48 +1,22 @@
 import React, {useEffect, useState} from "react";
-import PdfPreviewContainer from "../components/pdf/PdfPreviewContainer";
 import HOCs from "../HOCs"
 import CustomizedAccordions from "../components/Accordion/Accordion";
-import {Button} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
-import {IDE_PATH} from "../App";
-import {importAll} from "../utils";
-import SimpleViewerContainer from "../components/SimpleViewerContainer";
 import axios from "axios";
-import Typography from "@mui/material/Typography";
+import {LABS_URL} from "../vars";
+import {makeLabsList} from "./mainPageService";
 
 function MainPage() {
     const [accordionConfigObject, setAccordionConfigObject] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get("https://qwertyblut.herokuapp.com/api/labs/");
+            const response = await axios.get(LABS_URL);
 
             if (`${response.status}`.startsWith("2")) {
-                setAccordionConfigObject(response.data.labs.map((lab) => {
-                    return {
-                        title: lab.data.local_src.fileName.split(".")[0],
-                        content: <CustomizedAccordions
-                            accordionConfigObject={{
-                                0: {
-                                    title: "Лекция",
-                                    content: <Typography>
-                                        <div>
-                                            <Button
-                                                variant={"outlined"}
-                                                className={"margin-right-10"}
-                                            ><a href={lab.data.local_src.webViewLink}>Просмотреть лекцию</a></Button>
-                                            <Button
-                                                variant={"outlined"}
-                                            ><a href={lab.data.local_src.webContentLink}>Скачать
-                                                лекцию</a></Button>
-                                        </div>
-                                    </Typography>
-                                }
-                            }}
-                        />
-                    }
-                }))
-
+                const parsedLabs = await makeLabsList(response);
+                setAccordionConfigObject(parsedLabs)
+                setIsLoading(false)
             }
         }
 
@@ -57,12 +31,14 @@ function MainPage() {
                     marginTop: "unset"
                 }}
             >Главная</h1>
+            {isLoading && <div className={"loading"} id={"overlay_loader"}/>}
+
             {accordionConfigObject &&
-                <>
-                    <CustomizedAccordions
-                        accordionConfigObject={accordionConfigObject}
-                    />
-                </>
+            <>
+                <CustomizedAccordions
+                    accordionConfigObject={accordionConfigObject}
+                />
+            </>
             }
         </>
     )

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Typography from "@mui/material/Typography";
 import {Button} from "@material-ui/core";
+import {LABS_URL} from "../vars";
 
 
 function AddExampleOrTask(props) {
@@ -11,7 +12,7 @@ function AddExampleOrTask(props) {
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get("https://qwertyblut.herokuapp.com/api/labs/");
+            const response = await axios.get(LABS_URL);
 
             if (`${response.status}`.startsWith("2")) {
                 setAccordionConfigObject(response.data.labs.map((lab) => {

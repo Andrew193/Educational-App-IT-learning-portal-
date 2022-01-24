@@ -1,0 +1,49 @@
+.color-red {
+    color: red;
+}
+
+
+.margin-left-20 {
+    margin-left: 20px;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.margin-right-5 {
+    margin-right: 5px;
+}
+
+.text-bold {
+    font-size: large !important;
+    font-weight: bold !important;
+}
+
+.p-10-15 {
+    padding: 10px 15px;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper ul {
+    display: grid !important;
+}
+
+.d-grid {
+    display: grid !important;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.margin-right-10 {
+    margin-right: 10px !important;
+}

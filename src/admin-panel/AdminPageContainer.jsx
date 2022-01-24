@@ -3,13 +3,12 @@ import HOCs from "../HOCs";
 import {uploadLab} from "./adminService";
 import {toast} from 'react-toastify';
 import CustomizedAccordions from "../components/Accordion/Accordion";
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import AddExampleOrTask from "./AddExampleOrTask";
-
 
 function AdminPageContainer() {
     const [isLoading, setIsLoading] = useState(false);
-
+    let inputRef = React.useRef();
     const notify = (message) => toast(message);
 
     const uploadLabCallBack = () => {
@@ -35,18 +34,25 @@ function AdminPageContainer() {
                         title: "Добавить лекцию",
                         content: <>
                             <form>
+                                <Button
+                                    disabled={isLoading}
+                                    onClick={() => {
+                                        inputRef.current.click();
+                                    }}
+                                    variant={"outlined"}
+                                >Выбрать файл</Button>
                                 <input
                                     onChange={(e) => isLoadingCover(() => uploadLab(e.target, uploadLabCallBack))}
                                     type="file"
-                                    placeholder={"Выбрать файл"}
-                                    disabled={isLoading}
+                                    ref={inputRef}
+                                    style={{display: "none"}}
                                 />
                             </form>
                         </>
                     },
                     1: {
                         title: "Добавить пример или задание",
-                        content:<AddExampleOrTask />
+                        content: <AddExampleOrTask/>
                     }
                 }}
             />
