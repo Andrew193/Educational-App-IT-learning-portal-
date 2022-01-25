@@ -21,6 +21,9 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
     '&:last-child td, &:last-child th': {
         border: 0,
     },
+    '&:hover': {
+        backgroundColor: '#7e7e7e',
+    },
 }));
 
 function UsersTables(props) {

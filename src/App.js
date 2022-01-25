@@ -14,10 +14,11 @@ import LoginPageContainer from "./loogin_page/LoginPageContainer";
 import UsersPageContainer from "./users-page/UsersPageContainer";
 import UserPageContainer from "./user-page/UserPageContainer";
 import {Pages} from "./vars";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const ROUT_USER_ID_PLACEHOLDER = "/:userId(\\d+)?";
 
-const BASE_PATH = Pages.BASE
+export const BASE_PATH = Pages.BASE
 export const IDE_PATH = Pages.IDE
 export const LOGIN_PAGE = Pages.LOGIN
 export const USERS_PAGE = Pages.USERS
@@ -28,12 +29,12 @@ function App() {
 
     return (
         <div className="App">
-            <Route exact path={BASE_PATH} component={MainPage}/>
+            <ProtectedRoute exact path={BASE_PATH} component={MainPage}/>
             <Route exact path={LOGIN_PAGE} component={LoginPageContainer}/>
-            <Route exact path={IDE_PATH} component={OnlineEditorContainer}/>
-            <Route exact path={USERS_PAGE} component={UsersPageContainer}/>
-            <Route exact path={USER_PAGE} component={UserPageContainer}/>
-            <Route exact path={ADMIN_PANEL} component={AdminPageContainer}/>
+            <ProtectedRoute exact path={IDE_PATH} component={OnlineEditorContainer}/>
+            <ProtectedRoute exact path={USERS_PAGE} component={UsersPageContainer}/>
+            <ProtectedRoute exact path={USER_PAGE} component={UserPageContainer}/>
+            <ProtectedRoute exact path={ADMIN_PANEL} component={AdminPageContainer}/>
             <ToastContainer
                 position="top-right"
                 autoClose={1500}

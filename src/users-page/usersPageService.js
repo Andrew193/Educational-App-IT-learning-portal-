@@ -64,24 +64,6 @@ export function getAllUsers(setUsers, setIsLoading) {
                     }
                 }
 
-                for(let i=2; i<100;i++) {
-                    result[i]={
-                        title: "Все пользователи",
-                        content: <StickyHeadTable
-                            rows={users.map((user) => (
-                                {
-                                    name: user.id,
-                                    code: user.data.group,
-                                    population: user.data.name,
-                                    size: user.data.surname,
-                                    density: user.data.login
-                                }
-                            ))}
-                            columns={userColumns}
-                        />
-                    }
-                }
-
                 Object.entries(usersByGroup).forEach((userConfig) => {
                     console.log(users, userConfig[1].content)
                     result[userConfig[0]] = {

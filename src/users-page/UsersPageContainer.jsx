@@ -9,18 +9,20 @@ function UsersPageContainer(props) {
     const location = useLocation();
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isPreOpened, setIsPreOpened] = useState(false);
 
     useEffect(() => {
         getAllUsers(setUsers, setIsLoading)
     }, [])
 
     useEffect(() => {
-        const item = document.body.querySelector(location.hash);
-        let flag = false;
-        if (item && !flag) {
-            flag = true;
-            item.click()
-            item.scrollIntoView()
+        if (location.hash) {
+            const item = document.body.querySelector(location.hash);
+            if (item && !isPreOpened) {
+                setIsPreOpened(true);
+                item?.parentNode?.click()
+                item.scrollIntoView()
+            }
         }
     })
 

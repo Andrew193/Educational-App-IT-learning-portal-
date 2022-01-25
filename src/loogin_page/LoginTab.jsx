@@ -4,6 +4,10 @@ import * as Yup from "yup";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import {createUser} from "./loginService";
+import {useDispatch} from "react-redux";
+import {setIsAuth} from "../app/authReducer";
+import {useHistory} from "react-router-dom";
+import {BASE_PATH} from "../App";
 
 const validation = Yup.object().shape({
     login: Yup.string()
@@ -14,6 +18,8 @@ const validation = Yup.object().shape({
 })
 
 function LoginTab() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const formik = useFormik({
         initialValues: {
             login: "",
@@ -23,6 +29,8 @@ function LoginTab() {
         onSubmit: (credentials) => {
             createUser(credentials)
                 .then((response) => {
+                    dispatch(setIsAuth(true))
+                    history.push(BASE_PATH)
                     console.log(response)
                 })
                 .catch((error) => {
