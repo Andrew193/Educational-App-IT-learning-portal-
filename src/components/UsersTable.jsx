@@ -1,6 +1,10 @@
 import {Table, TableContainer, TableHead, TableRow, Paper, TableBody} from "@mui/material";
 import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import {styled} from '@mui/material/styles';
+import GroupIcon from "@mui/icons-material/Group";
+import EmailIcon from "@mui/icons-material/Email";
+import Grid3x3Icon from "@mui/icons-material/Grid3x3";
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -36,11 +40,38 @@ function UsersTables(props) {
             <Table sx={{minWidth: 700}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="center">Id</StyledTableCell>
-                        <StyledTableCell align="center">Группа</StyledTableCell>
-                        <StyledTableCell align="center">Имя</StyledTableCell>
-                        <StyledTableCell align="center">Фамилия</StyledTableCell>
-                        <StyledTableCell align="center">Почта</StyledTableCell>
+                        <StyledTableCell align="center">
+                            <span className={"d-flex align-items-center justify-content-center"}>
+                                <Grid3x3Icon fontSize={"small"}/>
+                                <span className={"margin-left-5"}>Id</span>
+                            </span>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                            <span className={"d-flex align-items-center justify-content-center"}>
+                                <GroupIcon fontSize={"small"}/>
+                                <span className={"margin-left-5"}>Группа</span>
+                            </span>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                            <span
+                                className={"d-flex align-items-center justify-content-center"}>
+                                <DriveFileRenameOutlineIcon/>
+                                <span className={"margin-left-5"}>Имя</span>
+                            </span>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                            <span
+                                className={"d-flex align-items-center justify-content-center"}>
+                                <DriveFileRenameOutlineIcon/>
+                                <span className={"margin-left-5"}>Фамилия</span>
+                            </span>
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                            <span className={"d-flex align-items-center justify-content-center"}>
+                                <EmailIcon fontSize={"small"}/>
+                                <span className={"margin-left-5"}>Почта</span>
+                            </span>
+                        </StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

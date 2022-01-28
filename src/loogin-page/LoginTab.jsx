@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 import * as React from "react";
 import Button from "@mui/material/Button";
-import {createUser} from "./loginService";
+import {authUser} from "./loginService";
 import {useDispatch} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
 import {useHistory} from "react-router-dom";
@@ -27,7 +27,7 @@ function LoginTab() {
         },
         validationSchema: validation,
         onSubmit: (credentials) => {
-            createUser(credentials)
+            authUser(credentials)
                 .then((response) => {
                     dispatch(setIsAuth(true))
                     history.push(BASE_PATH)
@@ -79,10 +79,11 @@ function LoginTab() {
                 </Box>
                 <Button
                     type={"submit"}
+                    variant={"outlined"}
                     disableElevation
                     size="small"
-                    className={"margin-top-10"}
-                >Отправить</Button>
+                    className={"margin-top-10 p-5-10"}
+                >Войти</Button>
             </form>
         </Box>
     )

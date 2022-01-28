@@ -62,7 +62,8 @@ export default function CustomizedAccordions(props) {
                                onChange={handleChange('panel' + (index + 1))}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography
-                                id={accordionRow.title.split(" ")[1]}
+                                className={"d-flex align-items-center"}
+                                id={(accordionRow.forId || " ").split(" ")[1]}
                             >{accordionRow.title}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>

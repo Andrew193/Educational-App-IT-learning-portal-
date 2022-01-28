@@ -15,6 +15,7 @@ function MainPage() {
 
             if (`${response.status}`.startsWith("2")) {
                 const parsedLabs = await makeLabsList(response);
+                console.log(parsedLabs)
                 setAccordionConfigObject(parsedLabs)
                 setIsLoading(false)
             }

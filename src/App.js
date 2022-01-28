@@ -10,7 +10,7 @@ import OnlineEditorContainer from "./components/online-editor-iframe/OnlineEdito
 import AdminPageContainer from "./admin-panel/AdminPageContainer";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
-import LoginPageContainer from "./loogin_page/LoginPageContainer";
+import LoginPageContainer from "./loogin-page/LoginPageContainer";
 import UsersPageContainer from "./users-page/UsersPageContainer";
 import UserPageContainer from "./user-page/UserPageContainer";
 import {Pages} from "./vars";

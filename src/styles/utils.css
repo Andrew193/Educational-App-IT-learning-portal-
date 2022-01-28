@@ -2,9 +2,24 @@
     color: red;
 }
 
+.justify-content-space-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
 
 .margin-left-20 {
     margin-left: 20px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.margin-left-5 {
+    margin-left: 5px;
 }
 
 .align-items-center {
@@ -21,7 +36,11 @@
 }
 
 .p-10-15 {
-    padding: 10px 15px;
+    padding: 10px 15px !important;
+}
+
+.p-5-10 {
+    padding: 5px 10px !important;
 }
 
 .text-left {
