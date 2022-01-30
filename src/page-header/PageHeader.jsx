@@ -10,22 +10,25 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 import ContainerList from "../components/list/List";
 import {useHistory} from "react-router-dom";
-import {Pages} from "../vars";
+import {Pages, USER_INFO} from "../vars";
+import {useDispatch} from "react-redux";
+import {setIsAuth} from "../app/authReducer";
+import {removeValueFromLocalStorage} from "../localStorageService";
 
 const sidebarItems = [
     {
         text: 'Dashboard',
-        path: "/",
+        path: Pages.BASE,
         icon: <HomeIcon/>
     },
     {
         text: 'Users',
-        path: "/users",
+        path: Pages.USERS,
         icon: <GroupIcon/>
     },
     {
         text: 'Admin Panel',
-        path: "/admin_panel",
+        path: Pages.ADMIN_PANEL,
         icon: <AdminPanelSettingsIcon/>
     }
 ];
@@ -34,6 +37,7 @@ function PageHeader(props) {
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const handleDrawerOpen = () => setOpen(true);
     const handleMenu = (event) => {
@@ -44,6 +48,20 @@ function PageHeader(props) {
     const {
         children
     } = props;
+
+
+    const redirectToProfile = () => {
+        handleMenu();
+        history.push(Pages.USER)
+    }
+
+    const logOut = () => {
+        handleMenu();
+        removeValueFromLocalStorage(USER_INFO);
+        dispatch(setIsAuth({
+            isOk: false
+        }));
+    }
 
     return (
         <div className={"header_root"}>
@@ -84,11 +102,8 @@ function PageHeader(props) {
                                 anchorEl={anchorEl}
                                 open={!!anchorEl}
                             >
-                                <MenuItem onClick={() => {
-                                    handleMenu();
-                                    history.push(Pages.USER)
-                                }}>Profile</MenuItem>
-                                <MenuItem onClick={handleMenu}>Logout</MenuItem>
+                                <MenuItem onClick={redirectToProfile}>Profile</MenuItem>
+                                <MenuItem onClick={logOut}>Logout</MenuItem>
                             </Menu>
                         </IconButton>
                     </Box>

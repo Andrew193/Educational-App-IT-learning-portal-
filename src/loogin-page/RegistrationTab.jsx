@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import * as Yup from "yup";
 import {encryptInformation} from "../authService";
-import {USER_INFO} from "../vars";
+import {AUTH_OK_MESSAGE, USER_INFO} from "../vars";
 
 const validation = Yup.object().shape({
     login: Yup.string()
@@ -29,16 +29,19 @@ function RegistrationTab() {
         },
         validationSchema: validation,
         onSubmit: async (credentials) => {
-           const response = await  createUser(credentials);
+            const response = await createUser(credentials);
 
-           if(response.ok) {
-               const userInfo = await response.json();
-               encryptInformation(userInfo, USER_INFO)
-               dispatch(setIsAuth(true))
-               history.push(BASE_PATH)
-           } else {
-               console.log("error")
-           }
+            if (response.ok) {
+                const userInfo = await response.json();
+                encryptInformation(userInfo, USER_INFO)
+                dispatch(setIsAuth({
+                    isOk: true,
+                    message: AUTH_OK_MESSAGE
+                }))
+                history.push(BASE_PATH)
+            } else {
+                console.log("error")
+            }
         }
     })
 

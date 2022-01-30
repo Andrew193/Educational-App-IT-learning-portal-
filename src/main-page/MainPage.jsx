@@ -5,7 +5,7 @@ import axios from "axios";
 import {LABS_URL} from "../vars";
 import {makeLabsList} from "./mainPageService";
 
-function MainPage() {
+function MainPage(props) {
     const [accordionConfigObject, setAccordionConfigObject] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -15,7 +15,6 @@ function MainPage() {
 
             if (`${response.status}`.startsWith("2")) {
                 const parsedLabs = await makeLabsList(response);
-                console.log(parsedLabs)
                 setAccordionConfigObject(parsedLabs)
                 setIsLoading(false)
             }
@@ -35,11 +34,11 @@ function MainPage() {
             {isLoading && <div className={"loading"} id={"overlay_loader"}/>}
 
             {accordionConfigObject &&
-            <>
-                <CustomizedAccordions
-                    accordionConfigObject={accordionConfigObject}
-                />
-            </>
+                <>
+                    <CustomizedAccordions
+                        accordionConfigObject={accordionConfigObject}
+                    />
+                </>
             }
         </>
     )

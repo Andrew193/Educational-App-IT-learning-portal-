@@ -5,6 +5,9 @@ import GroupIcon from "@mui/icons-material/Group";
 import EmailIcon from "@mui/icons-material/Email";
 import Grid3x3Icon from "@mui/icons-material/Grid3x3";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import {getUserById} from "./usersPageService";
+import {notify, Pages, USER_NOT_FOUND} from "../vars";
+import {useHistory} from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -34,6 +37,14 @@ function UsersTables(props) {
     const {
         rows
     } = props;
+
+    const history = useHistory();
+
+    async function redirectToUserProfile(userId) {
+        history.push({
+            pathname: Pages.USER + `/${userId}`,
+        })
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -76,7 +87,12 @@ function UsersTables(props) {
                 </TableHead>
                 <TableBody>
                     {rows?.map((row) => (
-                        <StyledTableRow key={row.id}>
+                        <StyledTableRow
+                            key={row.id}
+                            onClick={() => {
+                                redirectToUserProfile(row.id)
+                            }}
+                        >
                             <StyledTableCell
                                 component="th"
                                 scope="row"
@@ -84,8 +100,8 @@ function UsersTables(props) {
                             >
                                 {row.id}
                             </StyledTableCell>
-                            <StyledTableCell align="center">{row.data.group}</StyledTableCell>
-                            <StyledTableCell align="center">{row.data.name}</StyledTableCell>
+                            <StyledTableCell align="center">{row.data.usergroup}</StyledTableCell>
+                            <StyledTableCell align="center">{row.data.username}</StyledTableCell>
                             <StyledTableCell align="center">{row.data.surname}</StyledTableCell>
                             <StyledTableCell align="center">{row.data.login}</StyledTableCell>
                         </StyledTableRow>

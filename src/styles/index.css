@@ -75,6 +75,11 @@ code {
 #menu-appbar ul {
     display: flex;
     flex-direction: column;
+    padding: unset!important;
+}
+
+
+#menu-appbar ul li {
     padding: 10px;
 }
 

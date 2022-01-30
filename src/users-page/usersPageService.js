@@ -1,8 +1,8 @@
 import CustomizedAccordions from "../components/Accordion/Accordion";
 import React from "react";
-import UsersTable from "../components/UsersTable";
+import UsersTable from "./UsersTable";
 import StickyHeadTable from "../components/StickyTable";
-import {USERS_URL} from "../vars";
+import {ID_SUF, USERS_URL} from "../vars";
 
 export const userColumns = [
     {id: 'name', label: 'Id', minWidth: 170},
@@ -27,6 +27,19 @@ export const userColumns = [
     },
 ];
 
+
+export async function getUserById(userId) {
+    const response = await fetch(USERS_URL + ID_SUF + userId);
+
+    if (response.ok) {
+        const parsedResponse = await response.json();
+        return parsedResponse.user;
+    } else {
+        return false;
+    }
+}
+
+
 export function getAllUsers(setUsers, setIsLoading) {
     setIsLoading(true);
     fetch(USERS_URL)
@@ -35,7 +48,7 @@ export function getAllUsers(setUsers, setIsLoading) {
                 const usersByGroup = {};
 
                 users.forEach((user) => {
-                    const userGroup = user.data.group;
+                    const userGroup = user.data.usergroup;
                     if (userGroup in usersByGroup) {
                         usersByGroup[userGroup].content.push(user)
                     } else {
@@ -53,8 +66,8 @@ export function getAllUsers(setUsers, setIsLoading) {
                             rows={users.map((user) => (
                                 {
                                     name: user.id,
-                                    code: user.data.group,
-                                    population: user.data.name,
+                                    code: user.data.usergroup,
+                                    population: user.data.username,
                                     size: user.data.surname,
                                     density: user.data.login
                                 }
@@ -65,12 +78,13 @@ export function getAllUsers(setUsers, setIsLoading) {
                 }
 
                 Object.entries(usersByGroup).forEach((userConfig) => {
-                    console.log(users, userConfig[1].content)
+                    console.log(userConfig)
                     result[userConfig[0]] = {
                         title: `Группа ${userConfig[0]}`,
                         content: <UsersTable
                             rows={userConfig[1].content}
-                        />
+                        />,
+                        forId: `Группа ${userConfig[0]}`
                     }
                 })
 

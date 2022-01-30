@@ -6,17 +6,24 @@ import GroupIcon from "@mui/icons-material/Group";
 import {useHistory} from "react-router-dom";
 
 
-function UserInformationPart1() {
+function UserInformationPart1(props) {
+    const {
+        username,
+        surname,
+        login,
+        usergroup,
+        userId
+    } = props;
     const history = useHistory();
 
-    return(
+    return (
         <div
             className={"text-left margin-left-20"}
         >
             <div>
                 <Typography
                     className={"text-bold"}
-                >User surname here User name here</Typography>
+                >{surname}  {username}</Typography>
             </div>
             <div
                 className={"margin-top-10"}
@@ -29,7 +36,7 @@ function UserInformationPart1() {
                         >ID:</span>
                     <Grid3x3Icon
                         className={"margin-right-5"}
-                    />432432 4324 32432432423 432 4234 324 343
+                    />{userId}
                 </Typography>
             </div>
             <div
@@ -43,7 +50,7 @@ function UserInformationPart1() {
                         >Email:</span>
                     <EmailIcon
                         className={"margin-right-5"}
-                    /> testemail@gmail.com
+                    /> {login}
                 </Typography>
             </div>
             <div
@@ -60,7 +67,7 @@ function UserInformationPart1() {
                         >Group:</span>
                     <GroupIcon
                         className={"margin-right-5"}
-                    /> i-219a
+                    /> {usergroup}
                 </Typography>
             </div>
         </div>

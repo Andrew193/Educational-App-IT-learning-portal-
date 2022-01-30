@@ -1,19 +1,46 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AUTH_NOT_OK_MESSAGE, AUTH_OK_MESSAGE, AUTH_USER_URL, notify, Pages, USER_INFO} from "../vars";
+import {encryptInformation} from "../authService";
+import {BASE_PATH, LOGIN_PAGE} from "../App";
 
 const initialState = {
-    isAuth: false
+    isAuth: false,
+    pathToRedirectAfterLogin: ""
 };
-
-export const checkAuth = createAsyncThunk(
-    'auth/checkAuth',
-    async () => {
-        return true
-    }
-)
 
 export const authorizeUser = createAsyncThunk(
     'auth/authorizeUser',
-    async (credentials) => {
+    async (info, thunkAPI) => {
+        debugger
+        let formData = new FormData();
+        formData.append("userInformation", JSON.stringify(info.values));
+
+        const response = await fetch(AUTH_USER_URL, {
+                method: "POST",
+                body: formData
+            }
+        )
+
+        if (response.ok) {
+            const parsedInfo = await response.json();
+            await thunkAPI.dispatch(setIsAuth({
+                isOk: true,
+                message: AUTH_OK_MESSAGE
+            }));
+
+            const pathToRedirectAfterLogin = thunkAPI.getState().auth.pathToRedirectAfterLogin;
+            info.redirectAfterLogin(pathToRedirectAfterLogin === LOGIN_PAGE ? BASE_PATH : pathToRedirectAfterLogin);
+
+            return {
+                ...parsedInfo,
+            }
+        } else {
+            notify(AUTH_NOT_OK_MESSAGE);
+        }
+
+        return {
+            ok: false
+        }
     }
 )
 
@@ -22,26 +49,42 @@ const authReducer = createSlice({
     initialState,
     reducers: {
         setIsAuth: (state, action) => {
-            state.isAuth = action?.payload;
+            debugger
+            const {
+                isOk,
+                message
+            } = action?.payload;
+
+            if (state.isAuth !== isOk && message) {
+                notify(message);
+            }
+
+            state.isAuth = isOk
         },
+        setPathToRedirectAfterLogin: (state, action) => {
+            state.pathToRedirectAfterLogin = action.payload ===
+            LOGIN_PAGE
+                ? state.pathToRedirectAfterLogin || Pages.BASE
+                : action.payload;
+        }
     },
     extraReducers: ({
-        [checkAuth.fulfilled]: (state, action) => {
-            const {
-                isAuth
-            } = action.payload;
+        [authorizeUser.fulfilled]: (state, action) => {
+            const isAuthorized = action.payload.ok;
+            delete action.payload.ok;
 
-            console.log(isAuth)
-            state.isAuth = isAuth || true;
+            if (isAuthorized) {
+                encryptInformation(action.payload, USER_INFO)
+            }
+
+            state.isAuth = isAuthorized
         },
-        [checkAuth.rejected]: (state) => {
-            state.isAuth = true;
-        }
     })
 })
 
 export const {
-    setIsAuth
+    setIsAuth,
+    setPathToRedirectAfterLogin
 } = authReducer.actions;
 
 export default authReducer.reducer;

@@ -8,6 +8,8 @@ import {useDispatch} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
 import {useHistory} from "react-router-dom";
 import {BASE_PATH} from "../App";
+import {encryptInformation} from "../authService";
+import {AUTH_NOT_OK_MESSAGE, AUTH_OK_MESSAGE, notify, USER_INFO} from "../vars";
 
 const validation = Yup.object().shape({
     login: Yup.string()
@@ -26,16 +28,21 @@ function LoginTab() {
             password: ""
         },
         validationSchema: validation,
-        onSubmit: (credentials) => {
-            authUser(credentials)
-                .then((response) => {
-                    dispatch(setIsAuth(true))
-                    history.push(BASE_PATH)
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+        onSubmit: async (credentials) => {
+            console.log(";;;;;;;;;;;;;")
+            const response = await authUser(credentials);
+
+            if (response.ok) {
+                const userInfo = await response.json();
+                encryptInformation(userInfo, USER_INFO)
+                dispatch(setIsAuth({
+                    isOk: true,
+                    message: AUTH_OK_MESSAGE
+                }))
+                history.push(BASE_PATH)
+            } else {
+                notify(AUTH_NOT_OK_MESSAGE);
+            }
         }
     })
 

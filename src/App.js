@@ -16,7 +16,8 @@ import UserPageContainer from "./user-page/UserPageContainer";
 import {Pages} from "./vars";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-const ROUT_USER_ID_PLACEHOLDER = "/:userId(\\d+)?";
+const ROUT_USER_ID_PLACEHOLDER = "/:userId?";
+const GROUP = "/usergroup(\\d+)?";
 
 export const BASE_PATH = Pages.BASE
 export const IDE_PATH = Pages.IDE
@@ -33,7 +34,7 @@ function App() {
             <Route exact path={LOGIN_PAGE} component={LoginPageContainer}/>
             <ProtectedRoute exact path={IDE_PATH} component={OnlineEditorContainer}/>
             <ProtectedRoute exact path={USERS_PAGE} component={UsersPageContainer}/>
-            <ProtectedRoute exact path={USER_PAGE} component={UserPageContainer}/>
+            <ProtectedRoute path={USER_PAGE} component={UserPageContainer}/>
             <ProtectedRoute exact path={ADMIN_PANEL} component={AdminPageContainer}/>
             <ToastContainer
                 position="top-right"
