@@ -5,6 +5,7 @@ import CustomizedAccordions from "../components/Accordion/Accordion";
 import {Box, Button} from "@mui/material";
 import AddExampleOrTask from "./AddExampleOrTask";
 import {ADD_TASK_NOT_OK_MESSAGE, ADD_TASK_OK_MESSAGE, notify} from "../vars";
+import {v4 as uuidv4} from "uuid";
 
 export const UploaderTypes = {
     LAB: "LAB",
@@ -61,6 +62,7 @@ function AdminPageContainer() {
                 }}
             >Панель администратора</h1>
             <CustomizedAccordions
+                key={uuidv4()}
                 accordionConfigObject={{
                     0: {
                         title: "Добавить лекцию",
@@ -88,8 +90,6 @@ function AdminPageContainer() {
                         content: <AddExampleOrTask
                             setUploadType={setUploadType}
                             setLabId={setLabId}
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading}
                             onClick={() => {
                                 inputRef.current.click();
                             }}

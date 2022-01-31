@@ -16,6 +16,8 @@ export const Pages = {
 }
 
 export const USER_INFO = "userInformation";
+export const ASC = "ASC";
+export const DESC = "DESC";
 
 export const notify = (message) => toast(message);
 export const AUTH_OK_MESSAGE = "Доступ предоставлен";
@@ -24,3 +26,8 @@ export const USER_NOT_FOUND = "Пользователь не найден";
 export const USER_FOUND = "Информация о пользователе";
 export const ADD_TASK_OK_MESSAGE = "Добавлено новое задание!";
 export const ADD_TASK_NOT_OK_MESSAGE = "Добавление нового задания не удалось!";
+export const AUTH_TRY = "Попытка автоматического подключения";
+export const AUTH_NOT_FOUND_STORE = "Сохранение не найдено! Воспользуйтесь формой для входа";
+export const SEARCH_START = "Начинаю поиск";
+export const SEARCH_OK = "Успешно найдено";
+export const SEARCH_NOT_OK = "Не найдено";

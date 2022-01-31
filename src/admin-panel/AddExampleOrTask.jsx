@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import {Button} from "@material-ui/core";
 import {LABS_URL} from "../vars";
 import {UploaderTypes} from "./AdminPageContainer";
+import CustomizedAccordions from "../components/Accordion/Accordion";
 
 
 function AddExampleOrTask(props) {
@@ -11,26 +12,26 @@ function AddExampleOrTask(props) {
         onClick,
         setUploadType,
         setLabId,
-        isLoading,
-        setIsLoading
     } = props;
     const [accordionConfig, setAccordionConfigObject] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
-
-    console.log(isLoading)
     useEffect(() => {
         async function getData() {
+            setIsLoading(() => true);
             const response = await axios.get(LABS_URL);
+            const accordionConfigObject = {};
 
             if (`${response.status}`.startsWith("2")) {
-                setAccordionConfigObject(response.data.labs.map((lab) => {
-                    return <>
-                        <h3>{lab.filename.split(".")[0]}</h3>
-                        <Typography>
+                response.data.labs.forEach((lab, index) => {
+                    accordionConfigObject[index] = {
+                        title: lab.filename.split(".")[0],
+                        content: <Typography>
                             <div>
                                 <Button
                                     variant={"outlined"}
                                     className={"margin-right-10"}
+                                    color={"primary"}
                                 >Добавить пример</Button>
                                 <Button
                                     variant={"outlined"}
@@ -40,13 +41,18 @@ function AddExampleOrTask(props) {
                                         setIsLoading(() => true);
                                         onClick(lab.id);
                                     }}
+                                    color={"primary"}
                                 >Добавить задание</Button>
                             </div>
                         </Typography>
-                    </>
-                }))
-
+                    }
+                })
+                setAccordionConfigObject(() => <CustomizedAccordions
+                    accordionConfigObject={accordionConfigObject}
+                />)
+                setIsLoading(() => false);
             }
+
         }
 
         getData();
@@ -56,6 +62,7 @@ function AddExampleOrTask(props) {
 
     return (
         <>
+            {isLoading && <div className={"loading"} id={"overlay_loader"}/>}
             {accordionConfig}
         </>
     )

@@ -4,6 +4,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import {USERS_PAGE} from "../App";
 import GroupIcon from "@mui/icons-material/Group";
 import {useHistory} from "react-router-dom";
+import {notify, SEARCH_START} from "../vars";
 
 
 function UserInformationPart1(props) {
@@ -16,6 +17,10 @@ function UserInformationPart1(props) {
     } = props;
     const history = useHistory();
 
+    const redirectToSelectedGroup = () => {
+        history.push(USERS_PAGE + `#${usergroup}`)
+    }
+
     return (
         <div
             className={"text-left margin-left-20"}
@@ -23,7 +28,7 @@ function UserInformationPart1(props) {
             <div>
                 <Typography
                     className={"text-bold"}
-                >{surname}  {username}</Typography>
+                >{surname} {username}</Typography>
             </div>
             <div
                 className={"margin-top-10"}
@@ -43,31 +48,40 @@ function UserInformationPart1(props) {
                 className={"margin-top-10"}
             >
                 <Typography
-                    className={"d-flex align-items-center"}
+                    className={"d-flex align-items-center cursor-pointer"}
                 >
                         <span
                             className={"margin-right-10 text-bold"}
                         >Email:</span>
                     <EmailIcon
                         className={"margin-right-5"}
-                    /> {login}
+                    />
+                    <a
+                        className={"highlight"}
+                        href={`mailto:${login}`}
+                    >
+                        {login}
+                    </a>
                 </Typography>
             </div>
             <div
                 className={"margin-top-10"}
             >
                 <Typography
-                    className={"d-flex align-items-center"}
-                    onClick={() => {
-                        history.push(USERS_PAGE + `#I-219a`)
-                    }}
+                    className={"d-flex align-items-center cursor-pointer"}
+                    onClick={redirectToSelectedGroup}
                 >
                         <span
                             className={"margin-right-10 text-bold"}
                         >Group:</span>
                     <GroupIcon
                         className={"margin-right-5"}
-                    /> {usergroup}
+                    />
+                    <span
+                        className={"highlight"}
+                    >
+                        {usergroup}
+                    </span>
                 </Typography>
             </div>
         </div>

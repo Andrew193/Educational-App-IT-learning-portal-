@@ -2,8 +2,67 @@
     color: red;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.highlight {
+    transition: all ease 0.3s;
+}
+
+.highlight:hover {
+    color: #3f51b5 !important;
+}
+
+.border-50pr {
+    border-radius: 50%;
+}
+
+.highlight-back-svg {
+    transition: all ease 0.3s;
+}
+
+.highlight-back-svg:hover svg {
+    color: #3f51b5 !important;
+}
+
+.active-navbar-link {
+    color: #3f51b5;
+}
+
+.MuiButton-outlinedPrimary {
+    color: #3f51b5 !important;
+    border: 1px solid #3f51b580 !important;
+    padding: 5px 15px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    line-height: 1.75 !important;
+    border-radius: 4px !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.justify-content-right {
+    justify-content: right;
+}
+
+.border-bottom-unset {
+    border-bottom: unset !important;
+}
+
 .justify-content-space-evenly {
     justify-content: space-evenly;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
 }
 
 .justify-content-center {

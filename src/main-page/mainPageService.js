@@ -55,12 +55,14 @@ export function makeLabsList(response) {
                                 {
                                     !lab?.taskdata
                                         ? <div
-                                        className={"d-flex align-items-center justify-content-center"}
+                                            className={"d-flex align-items-center justify-content-center"}
                                         >
                                             <InsertEmoticonIcon
                                                 className={"margin-right-5"}
                                             />
-                                            <Typography>Отсутствует</Typography>
+                                            <Typography
+                                                className={"text-bold"}
+                                            >Отсутствует</Typography>
                                         </div>
                                         :
                                         <>

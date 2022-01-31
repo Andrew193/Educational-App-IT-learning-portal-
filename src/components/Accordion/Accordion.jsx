@@ -55,19 +55,21 @@ export default function CustomizedAccordions(props) {
     } = props;
 
     return (
-        <Box>
+        <Box
+        component={"div"}
+        >
             {
                 Object.values(accordionConfigObject).map((accordionRow, index) => (
                     <Accordion expanded={expanded === 'panel' + (index + 1)}
                                onChange={handleChange('panel' + (index + 1))}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography
-                                className={"d-flex align-items-center"}
+                                className={"d-flex align-items-center highlight"}
                                 id={(accordionRow.forId || " ").split(" ")[1]}
                             >{accordionRow.title}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>{accordionRow.content}</Typography>
+                            <Box>{accordionRow.content}</Box>
                         </AccordionDetails>
                     </Accordion>
                 ))

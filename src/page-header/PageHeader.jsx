@@ -122,8 +122,12 @@ function PageHeader(props) {
                     }),
                 }}
             >
-                <div className={"header_toolbar"}>
-                    <IconButton onClick={handleDrawerClose}>
+                <div className={"header_toolbar d-flex align-items-center justify-content-space-between"}>
+                    Navbar
+                    <IconButton
+                        onClick={handleDrawerClose}
+                        className={"border-50pr highlight"}
+                    >
                         <ChevronLeftIcon/>
                     </IconButton>
                 </div>

@@ -78,9 +78,11 @@ export function getAllUsers(setUsers, setIsLoading) {
                 }
 
                 Object.entries(usersByGroup).forEach((userConfig) => {
-                    console.log(userConfig)
                     result[userConfig[0]] = {
-                        title: `Группа ${userConfig[0]}`,
+                        title: <div className={"d-flex align-items-center"}>
+                            <span>Группа</span>
+                            <span className={"text-bold margin-left-10"}>{userConfig[0]}</span>
+                        </div>,
                         content: <UsersTable
                             rows={userConfig[1].content}
                         />,
@@ -96,8 +98,6 @@ export function getAllUsers(setUsers, setIsLoading) {
                         />
                     }
                 })
-
-                console.log(users)
             }
         )
         .catch((error) => console.error(error))

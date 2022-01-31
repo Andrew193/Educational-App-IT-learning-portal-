@@ -1,5 +1,6 @@
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import {useState} from "react";
+import {v4 as uuidv4} from "uuid";
 
 function StickyTable(props) {
     const {
@@ -27,7 +28,8 @@ function StickyTable(props) {
                         <TableRow>
                             {columns.map((column) => (
                                 <TableCell
-                                    key={column.id}
+                                    className={"border-bottom-unset"}
+                                    key={uuidv4()}
                                     align={column.align || "center"}
                                     style={{
                                         minWidth: column.minWidth,
@@ -45,11 +47,11 @@ function StickyTable(props) {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={uuidv4()}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align || "center"}>
+                                                <TableCell key={uuidv4()} align={column.align || "center"}>
                                                     {column.format && typeof value === 'number'
                                                         ? column.format(value)
                                                         : value}
