@@ -5,6 +5,7 @@ import {Button} from "@material-ui/core";
 import {LABS_URL} from "../vars";
 import {UploaderTypes} from "./AdminPageContainer";
 import CustomizedAccordions from "../components/Accordion/Accordion";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 
 function AddExampleOrTask(props) {
@@ -30,9 +31,12 @@ function AddExampleOrTask(props) {
                             <div>
                                 <Button
                                     variant={"outlined"}
-                                    className={"margin-right-10"}
+                                    className={"margin-right-10 d-flex align-items-center"}
                                     color={"primary"}
-                                >Добавить пример</Button>
+                                >
+                                    <UploadFileIcon className={"margin-right-5"}/>
+                                    <span>Добавить пример</span>
+                                </Button>
                                 <Button
                                     variant={"outlined"}
                                     onClick={() => {
@@ -42,7 +46,10 @@ function AddExampleOrTask(props) {
                                         onClick(lab.id);
                                     }}
                                     color={"primary"}
-                                >Добавить задание</Button>
+                                >
+                                    <UploadFileIcon className={"margin-right-5"}/>
+                                    <span>Добавить задание</span>
+                                </Button>
                             </div>
                         </Typography>
                     }

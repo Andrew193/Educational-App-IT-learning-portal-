@@ -15,6 +15,10 @@ a {
     color: #3f51b5 !important;
 }
 
+.highlight:hover a{
+    color: #3f51b5 !important;
+}
+
 .border-50pr {
     border-radius: 50%;
 }

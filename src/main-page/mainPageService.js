@@ -25,7 +25,7 @@ export function makeLabsList(response) {
                             <div>
                                 <Button
                                     variant={"outlined"}
-                                    className={"margin-right-10"}
+                                    className={"margin-right-10 highlight"}
                                 >
                                     <a
                                         href={lab.webviewlink}
@@ -36,6 +36,7 @@ export function makeLabsList(response) {
                                 </Button>
                                 <Button
                                     variant={"outlined"}
+                                    className={"highlight"}
                                 >
                                     <a
                                         href={lab.webcontentlink}
@@ -68,23 +69,26 @@ export function makeLabsList(response) {
                                         <>
                                             <Button
                                                 variant={"outlined"}
-                                                className={"margin-right-10"}
+                                                className={"margin-right-10 highlight"}
                                             >
                                                 <a
                                                     href={lab?.taskdata?.webViewLink}
                                                     className={"d-flex align-items-center"}
                                                 >
-                                                    <PreviewIcon className={"margin-right-5"}/>Просмотреть задание
+                                                    <PreviewIcon className={"margin-right-5"}/>
+                                                    <span>Просмотреть задание</span>
                                                 </a>
                                             </Button>
                                             <Button
                                                 variant={"outlined"}
+                                                className={"highlight"}
                                             >
                                                 <a
                                                     href={lab?.taskdata?.webContentLink}
                                                     className={" d-flex align-items-center"}
                                                 >
-                                                    <DownloadIcon className={"margin-right-5"}/>Скачать задание
+                                                    <DownloadIcon className={"margin-right-5"}/>
+                                                    <span>Скачать задание</span>
                                                 </a>
                                             </Button>
                                         </>

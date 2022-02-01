@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import HOCs from "../HOCs";
 import {uploadLab, uploadTask} from "./adminService";
 import CustomizedAccordions from "../components/Accordion/Accordion";
-import {Box, Button} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import AddExampleOrTask from "./AddExampleOrTask";
 import {ADD_TASK_NOT_OK_MESSAGE, ADD_TASK_OK_MESSAGE, notify} from "../vars";
 import {v4 as uuidv4} from "uuid";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 export const UploaderTypes = {
     LAB: "LAB",
@@ -74,8 +75,9 @@ function AdminPageContainer() {
                                         setUploadType(() => UploaderTypes.LAB);
                                         inputRef.current.click();
                                     }}
+                                    className={" d-flex align-items-center"}
                                     variant={"outlined"}
-                                >Выбрать файл</Button>
+                                > <UploadFileIcon className={"margin-right-5"}/> Выбрать файл</Button>
                                 <input
                                     onChange={(e) => isLoadingCover(() => uploaderSwitcher(e))}
                                     type="file"
