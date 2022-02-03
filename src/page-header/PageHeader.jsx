@@ -14,6 +14,7 @@ import {Pages, USER_INFO} from "../vars";
 import {useDispatch} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
 import {removeValueFromLocalStorage} from "../localStorageService";
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 
 const sidebarItems = [
     {
@@ -30,6 +31,11 @@ const sidebarItems = [
         text: 'Admin Panel',
         path: Pages.ADMIN_PANEL,
         icon: <AdminPanelSettingsIcon/>
+    },
+    {
+        text: 'Simple editor',
+        path: Pages.EDITOR,
+        icon: <HomeRepairServiceIcon/>
     }
 ];
 

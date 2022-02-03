@@ -1,4 +1,4 @@
-import {LABS_URL, TASKS_URL} from "../vars";
+import {EXAMPLES_URL, LABS_URL, TASKS_URL} from "../vars";
 
 export function uploadLab(lab, callBack) {
     let formData = new FormData();
@@ -21,6 +21,19 @@ export function uploadTask(task, labId) {
     formData.append("file", task.files[0]);
 
     return fetch(TASKS_URL + `${labId}`, {
+            method: "POST",
+            body: formData
+        }
+    )
+        .then((response) => response)
+        .catch((error) => error)
+}
+
+export function uploadExample(task, labId) {
+    let formData = new FormData();
+    formData.append("file", task.files[0]);
+
+    return fetch(EXAMPLES_URL + `${labId}`, {
             method: "POST",
             body: formData
         }

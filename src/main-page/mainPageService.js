@@ -8,7 +8,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 
 
-export function makeLabsList(response) {
+export function makeLabsList(response, history) {
     return response.data.labs.map((lab) => {
         return {
             forId: lab.filename.split(".")[0],
@@ -91,6 +91,69 @@ export function makeLabsList(response) {
                                                     <span>Скачать задание</span>
                                                 </a>
                                             </Button>
+                                        </>
+                                }
+                            </div>
+                        </Typography>
+                    },
+                    2: {
+                        forId: "Примеры",
+                        title: "Примеры",
+                        content: <Typography>
+                            <div>
+                                {
+                                    !lab?.exampledata
+                                        ? <div
+                                            className={"d-flex align-items-center justify-content-center"}
+                                        >
+                                            <InsertEmoticonIcon
+                                                className={"margin-right-5"}
+                                            />
+                                            <Typography
+                                                className={"text-bold"}
+                                            >Отсутствует</Typography>
+                                        </div>
+                                        :
+                                        <>
+                                            {lab?.exampledata.map((example) => (
+                                                <Typography
+                                                    className={"d-flex  align-items-center margin-top-10"}
+                                                >
+                                                    <Button
+                                                        variant={"outlined"}
+                                                        className={"highlight flex-1-0"}
+                                                    >
+                                                        <a
+                                                            href={example?.webViewLink}
+                                                            className={"d-flex align-items-center"}
+                                                        >
+                                                            <PreviewIcon className={"margin-right-5"}/>
+                                                            <span>Просмотреть задание {example?.exampleName?.split(".")[0]}</span>
+                                                        </a>
+                                                    </Button>
+                                                    <Button
+                                                        className={"flex-1-0 margin-left-10 margin-right-10 d-flex align-items-center"}
+                                                        onClick={() => {
+                                                            history.push(`/editor/${lab?.id}`)
+                                                        }}
+                                                    >
+                                                        <PreviewIcon className={"margin-right-5"}/>
+                                                        <span>Онлайн</span>
+                                                    </Button>
+                                                    <Button
+                                                        variant={"outlined"}
+                                                        className={"highlight flex-1-0"}
+                                                    >
+                                                        <a
+                                                            href={example?.webContentLink}
+                                                            className={" d-flex align-items-center"}
+                                                        >
+                                                            <DownloadIcon className={"margin-right-5"}/>
+                                                            <span>Скачать задание {example?.exampleName?.split(".")[0]}</span>
+                                                        </a>
+                                                    </Button>
+                                                </Typography>
+                                            ))}
                                         </>
                                 }
                             </div>

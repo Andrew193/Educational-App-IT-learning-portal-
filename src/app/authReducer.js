@@ -4,7 +4,7 @@ import {encryptInformation} from "../authService";
 import {BASE_PATH, LOGIN_PAGE} from "../App";
 
 const initialState = {
-    isAuth: false,
+    isAuth: null,
     pathToRedirectAfterLogin: ""
 };
 

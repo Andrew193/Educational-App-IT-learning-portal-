@@ -1,11 +1,12 @@
 import {Redirect, Route, useHistory, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {LOGIN_PAGE} from "../App";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {getValueFromLocalStorage} from "../localStorageService";
 import {USER_INFO} from "../vars";
 import {decryptInformation, redirectAfterLogin} from "../authService";
 import {authorizeUser, setPathToRedirectAfterLogin} from "../app/authReducer";
+import {withDelay} from "../utils";
 
 function ProtectedRoute({component: Component, ...restOfProps}) {
     const {
@@ -17,32 +18,35 @@ function ProtectedRoute({component: Component, ...restOfProps}) {
     const history = useHistory();
     const location = useLocation();
 
-    useEffect(async () => {
-        async function loadData() {
-            if (!isAuth) {
-                await dispatch(setPathToRedirectAfterLogin(location.pathname + location.hash + location.search))
+    async function loadData() {
+        console.log("sdsdsds")
+        if (!isAuth) {
+            await dispatch(setPathToRedirectAfterLogin(location.pathname + location.hash + location.search))
 
-                const storedUserInformation = getValueFromLocalStorage(USER_INFO);
-                if (storedUserInformation) {
-                    const decryptedUserInformation = decryptInformation(storedUserInformation)?.userInfo;
+            const storedUserInformation = getValueFromLocalStorage(USER_INFO);
+            if (storedUserInformation) {
+                const decryptedUserInformation = decryptInformation(storedUserInformation)?.userInfo;
 
-                    const authInformation = {
-                        login: decryptedUserInformation?.data?.login,
-                        password: decryptedUserInformation?.data?.password
-                    }
-
-                    await dispatch(authorizeUser({
-                        values: authInformation,
-                        redirectAfterLogin: redirectAfterLogin(history)
-                    }));
+                const authInformation = {
+                    login: decryptedUserInformation?.data?.login,
+                    password: decryptedUserInformation?.data?.password
                 }
+
+                await dispatch(authorizeUser({
+                    values: authInformation,
+                    redirectAfterLogin: redirectAfterLogin(history)
+                }));
             }
         }
+    }
 
+    const onLoadDataHandler = useMemo(() => withDelay(500,
+        () => loadData()), [loadData])
 
+    useEffect( () => {
         if (!isCompleted) {
             setIsCompleted(() => true)
-            loadData();
+            onLoadDataHandler();
         }
 
     }, [isAuth, location.pathname])

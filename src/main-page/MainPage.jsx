@@ -4,8 +4,10 @@ import CustomizedAccordions from "../components/Accordion/Accordion";
 import axios from "axios";
 import {LABS_URL} from "../vars";
 import {makeLabsList} from "./mainPageService";
+import {useHistory} from "react-router-dom";
 
 function MainPage(props) {
+    const history = useHistory();
     const [accordionConfigObject, setAccordionConfigObject] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -14,7 +16,7 @@ function MainPage(props) {
             const response = await axios.get(LABS_URL);
 
             if (`${response.status}`.startsWith("2")) {
-                const parsedLabs = await makeLabsList(response);
+                const parsedLabs = await makeLabsList(response, history);
                 setAccordionConfigObject(parsedLabs)
                 setIsLoading(false)
             }

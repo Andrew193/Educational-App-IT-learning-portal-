@@ -2,6 +2,10 @@
     color: red;
 }
 
+.flex-1-0 {
+    flex: 1 0;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -15,7 +19,7 @@ a {
     color: #3f51b5 !important;
 }
 
-.highlight:hover a{
+.highlight:hover a {
     color: #3f51b5 !important;
 }
 
@@ -78,7 +82,7 @@ a {
 }
 
 .margin-left-10 {
-    margin-left: 10px;
+    margin-left: 10px!important;
 }
 
 .margin-left-5 {
@@ -87,6 +91,10 @@ a {
 
 .align-items-center {
     align-items: center;
+}
+
+.justify-content-left {
+    justify-content: left;
 }
 
 .margin-right-5 {

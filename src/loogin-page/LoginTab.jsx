@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import {authUser} from "./loginService";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
 import {useHistory} from "react-router-dom";
 import {BASE_PATH} from "../App";
@@ -23,6 +23,9 @@ const validation = Yup.object().shape({
 
 function LoginTab() {
     const [isLoading, setIsLoading] = useState(true);
+    const {
+        isAuth
+    } = useSelector((state) => state?.auth);
     const dispatch = useDispatch();
     const history = useHistory();
     const formik = useFormik({
@@ -43,6 +46,7 @@ function LoginTab() {
                 }))
                 history.push(BASE_PATH)
             } else {
+                setIsLoading(() => false)
                 notify(AUTH_NOT_OK_MESSAGE);
             }
         }
@@ -51,20 +55,21 @@ function LoginTab() {
     useEffect(() => {
         function loadData() {
             notify(AUTH_TRY)
+            const isUserInfo = getValueFromLocalStorage(USER_INFO)
 
-            setTimeout(() => {
-                const isUserInfo = getValueFromLocalStorage(USER_INFO)
-
-                if (!isUserInfo) {
-                    notify(AUTH_NOT_FOUND_STORE)
-                    setIsLoading(() => false)
-                }
-            }, 1500)
+            if (!isUserInfo) {
+                notify(AUTH_NOT_FOUND_STORE)
+                setIsLoading(() => false)
+            }
         }
 
         loadData();
 
     }, [])
+
+    useEffect(() => {
+        setIsLoading(() => false)
+    }, [isAuth])
 
     return (
         <>

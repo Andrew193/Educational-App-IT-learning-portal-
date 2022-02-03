@@ -33,6 +33,12 @@ function AddExampleOrTask(props) {
                                     variant={"outlined"}
                                     className={"margin-right-10 d-flex align-items-center"}
                                     color={"primary"}
+                                    onClick={() => {
+                                        setLabId(() => lab.id);
+                                        setUploadType(() => UploaderTypes.EXAMPLE);
+                                        setIsLoading(() => true);
+                                        onClick(lab.id);
+                                    }}
                                 >
                                     <UploadFileIcon className={"margin-right-5"}/>
                                     <span>Добавить пример</span>
@@ -67,6 +73,7 @@ function AddExampleOrTask(props) {
     }, [])
 
 
+    console.log(isLoading)
     return (
         <>
             {isLoading && <div className={"loading"} id={"overlay_loader"}/>}

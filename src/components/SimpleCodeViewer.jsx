@@ -64,6 +64,7 @@ function SimpleCodeViewer(props) {
                     const textareaValue = e.target.value;
                     setCode(() => textareaValue);
                 }}
+                id={"simpleEditor"}
             />
 
                 <input

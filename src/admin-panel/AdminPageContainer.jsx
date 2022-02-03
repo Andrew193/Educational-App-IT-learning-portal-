@@ -1,10 +1,16 @@
 import React, {useState} from "react";
 import HOCs from "../HOCs";
-import {uploadLab, uploadTask} from "./adminService";
+import {uploadExample, uploadLab, uploadTask} from "./adminService";
 import CustomizedAccordions from "../components/Accordion/Accordion";
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import AddExampleOrTask from "./AddExampleOrTask";
-import {ADD_TASK_NOT_OK_MESSAGE, ADD_TASK_OK_MESSAGE, notify} from "../vars";
+import {
+    ADD_EXAMPLE_NOT_OK_MESSAGE,
+    ADD_EXAMPLE_OK_MESSAGE,
+    ADD_TASK_NOT_OK_MESSAGE,
+    ADD_TASK_OK_MESSAGE,
+    notify
+} from "../vars";
 import {v4 as uuidv4} from "uuid";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 
@@ -48,6 +54,16 @@ function AdminPageContainer() {
                 } else {
                     uploadTaskCallBack(ADD_TASK_NOT_OK_MESSAGE);
                 }
+                break;
+            }
+            case(UploaderTypes.EXAMPLE): {
+                const response = await uploadExample(e.target, labId);
+                if (response.ok) {
+                    uploadTaskCallBack(ADD_EXAMPLE_OK_MESSAGE);
+                } else {
+                    uploadTaskCallBack(ADD_EXAMPLE_NOT_OK_MESSAGE);
+                }
+                break;
             }
             default:
                 return;

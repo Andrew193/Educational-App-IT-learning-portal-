@@ -15,14 +15,17 @@ import UsersPageContainer from "./users-page/UsersPageContainer";
 import UserPageContainer from "./user-page/UserPageContainer";
 import {Pages} from "./vars";
 import ProtectedRoute from "./components/ProtectedRoute";
+import SimpleViewerPage from "./simple-editor/SimpleViewerPage";
 
 const ROUT_USER_ID_PLACEHOLDER = "/:userId?";
+const LAB_ID = "/:labId?"
 const GROUP = "/usergroup(\\d+)?";
 
 export const BASE_PATH = Pages.BASE
 export const IDE_PATH = Pages.IDE
 export const LOGIN_PAGE = Pages.LOGIN
 export const USERS_PAGE = Pages.USERS
+export const SIMPLE_EDITOR = Pages.EDITOR + LAB_ID
 const USER_PAGE = Pages.USER + ROUT_USER_ID_PLACEHOLDER
 const ADMIN_PANEL = Pages.ADMIN_PANEL
 
@@ -36,6 +39,7 @@ function App() {
             <ProtectedRoute exact path={USERS_PAGE} component={UsersPageContainer}/>
             <ProtectedRoute path={USER_PAGE} component={UserPageContainer}/>
             <ProtectedRoute exact path={ADMIN_PANEL} component={AdminPageContainer}/>
+            <ProtectedRoute exact path={SIMPLE_EDITOR} component={SimpleViewerPage}/>
             <ToastContainer
                 position="top-right"
                 autoClose={1500}
