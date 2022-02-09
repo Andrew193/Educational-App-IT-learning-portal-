@@ -9,7 +9,15 @@ import {setIsAuth} from "../app/authReducer";
 import {useHistory} from "react-router-dom";
 import {BASE_PATH} from "../App";
 import {encryptInformation} from "../authService";
-import {AUTH_NOT_FOUND_STORE, AUTH_NOT_OK_MESSAGE, AUTH_OK_MESSAGE, AUTH_TRY, notify, USER_INFO} from "../vars";
+import {
+    AUTH_LOGIN_TRY,
+    AUTH_NOT_FOUND_STORE,
+    AUTH_NOT_OK_MESSAGE,
+    AUTH_OK_MESSAGE,
+    AUTH_TRY,
+    notify,
+    USER_INFO
+} from "../vars";
 import {useEffect, useState} from "react";
 import {getValueFromLocalStorage} from "../localStorageService";
 
@@ -35,6 +43,8 @@ function LoginTab() {
         },
         validationSchema: validation,
         onSubmit: async (credentials) => {
+            notify(AUTH_LOGIN_TRY)
+            setIsLoading(true)
             const response = await authUser(credentials);
 
             if (response.ok) {
@@ -49,6 +59,7 @@ function LoginTab() {
                 setIsLoading(() => false)
                 notify(AUTH_NOT_OK_MESSAGE);
             }
+            setIsLoading(false)
         }
     })
 

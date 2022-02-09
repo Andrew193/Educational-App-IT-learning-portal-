@@ -2,6 +2,8 @@ import {Box, Button} from "@material-ui/core";
 import CsvDownload from 'react-json-to-csv'
 import {USERS_PAGE} from "../App";
 import {useHistory} from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EditIcon from '@mui/icons-material/Edit';
 
 function UserActions(props) {
     const history = useHistory();
@@ -17,16 +19,22 @@ function UserActions(props) {
             {!userId
                 ? <Button
                     variant={"outlined"}
-                    className={"margin-right-10"}
+                    className={"margin-right-10 highlight"}
                 >
-                    Редактировать профиль
+                    <EditIcon
+                        className={"margin-right-10"}
+                    />
+                    <span>Редактировать профиль</span>
                 </Button>
                 : <Button
                     variant={"outlined"}
-                    className={"margin-right-10"}
+                    className={"margin-right-10 highlight"}
                     onClick={() => history.push(USERS_PAGE + `#${userInformation?.usergroup}`)}
                 >
-                    Назад
+                    <ArrowBackIcon
+                        className={"margin-right-10"}
+                    />
+                    <span>Назад</span>
                 </Button>
             }
 

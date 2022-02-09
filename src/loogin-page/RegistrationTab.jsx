@@ -10,6 +10,7 @@ import * as React from "react";
 import * as Yup from "yup";
 import {encryptInformation} from "../authService";
 import {AUTH_OK_MESSAGE, USER_INFO} from "../vars";
+import {useState} from "react";
 
 const validation = Yup.object().shape({
     login: Yup.string()
@@ -22,6 +23,9 @@ const validation = Yup.object().shape({
 function RegistrationTab() {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [isLoading, setIsLoading] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             login: "",
@@ -29,6 +33,7 @@ function RegistrationTab() {
         },
         validationSchema: validation,
         onSubmit: async (credentials) => {
+            setIsLoading(true)
             const response = await createUser(credentials);
 
             if (response.ok) {
@@ -42,6 +47,7 @@ function RegistrationTab() {
             } else {
                 console.log("error")
             }
+            setIsLoading(false)
         }
     })
 
@@ -49,6 +55,7 @@ function RegistrationTab() {
         <Box
             className={"d-flex f-direction"}
         >
+            {isLoading && <div className={"loading"} id={"overlay_loader"}/>}
             <form onSubmit={formik.handleSubmit}>
                 <Box>
                     <TextField

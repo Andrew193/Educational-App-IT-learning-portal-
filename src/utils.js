@@ -12,3 +12,11 @@ export function withDelay(interval, callback) {
         debounceTimeoutId = setTimeout(() => callback.apply(this, args), interval);
     };
 }
+
+export function createArrayWithPresetLengthAndValues(arrayLength, presetValue) {
+    return Array.apply(null, Array(arrayLength)).map(() => presetValue)
+}
+
+export function createDeepCopy(data) {
+    return JSON.parse(JSON.stringify(data));
+}

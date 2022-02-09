@@ -7,6 +7,9 @@ import clsx from "clsx";
 import HomeIcon from '@material-ui/icons/Home';
 import GroupIcon from '@material-ui/icons/Group';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import BuildIcon from '@mui/icons-material/Build';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 
 import ContainerList from "../components/list/List";
 import {useHistory} from "react-router-dom";
@@ -36,6 +39,11 @@ const sidebarItems = [
         text: 'Simple editor',
         path: Pages.EDITOR,
         icon: <HomeRepairServiceIcon/>
+    },
+    {
+        text: 'IDE',
+        path: Pages.IDE,
+        icon: <BuildIcon/>
     }
 ];
 
@@ -108,8 +116,24 @@ function PageHeader(props) {
                                 anchorEl={anchorEl}
                                 open={!!anchorEl}
                             >
-                                <MenuItem onClick={redirectToProfile}>Profile</MenuItem>
-                                <MenuItem onClick={logOut}>Logout</MenuItem>
+                                <MenuItem
+                                    className={"highlight"}
+                                    onClick={redirectToProfile}
+                                >
+                                    <PersonIcon
+                                        className={"margin-right-5"}
+                                    />
+                                    <span>Profile</span>
+                                </MenuItem>
+                                <MenuItem
+                                    className={"highlight"}
+                                    onClick={logOut}
+                                >
+                                    <LogoutIcon
+                                        className={"margin-right-5"}
+                                    />
+                                    <span>Logout</span>
+                                </MenuItem>
                             </Menu>
                         </IconButton>
                     </Box>

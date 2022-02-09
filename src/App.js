@@ -18,16 +18,17 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import SimpleViewerPage from "./simple-editor/SimpleViewerPage";
 
 const ROUT_USER_ID_PLACEHOLDER = "/:userId?";
-const LAB_ID = "/:labId?"
+const LAB_ID = "/:labId?";
+const TASK_ID = "/:taskId?";
 const GROUP = "/usergroup(\\d+)?";
 
-export const BASE_PATH = Pages.BASE
-export const IDE_PATH = Pages.IDE
-export const LOGIN_PAGE = Pages.LOGIN
-export const USERS_PAGE = Pages.USERS
-export const SIMPLE_EDITOR = Pages.EDITOR + LAB_ID
-const USER_PAGE = Pages.USER + ROUT_USER_ID_PLACEHOLDER
-const ADMIN_PANEL = Pages.ADMIN_PANEL
+export const BASE_PATH = Pages.BASE;
+export const IDE_PATH = Pages.IDE + TASK_ID;
+export const LOGIN_PAGE = Pages.LOGIN;
+export const USERS_PAGE = Pages.USERS;
+export const SIMPLE_EDITOR = Pages.EDITOR + LAB_ID;
+const USER_PAGE = Pages.USER + ROUT_USER_ID_PLACEHOLDER;
+const ADMIN_PANEL = Pages.ADMIN_PANEL;
 
 function App() {
 

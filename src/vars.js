@@ -14,7 +14,7 @@ export const Pages = {
     USERS: "/users",
     USER: "/user",
     ADMIN_PANEL: "/admin_panel",
-    EDITOR: "/editor"
+    EDITOR: "/editor",
 }
 
 export const USER_INFO = "userInformation";
@@ -35,3 +35,4 @@ export const AUTH_NOT_FOUND_STORE = "Сохранение не найдено! �
 export const SEARCH_START = "Начинаю поиск";
 export const SEARCH_OK = "Успешно найдено";
 export const SEARCH_NOT_OK = "Не найдено";
+export const AUTH_LOGIN_TRY = "Попытка авторизации";

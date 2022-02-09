@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react";
 import OnlineEditor from "./OnlineEditor";
 import HOCs from "../../HOCs";
 import {Button, Typography} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
 import SendTaskModal from "../SendTaskModal/SendTaskModal";
+import {withRouter} from "react-router-dom";
 
 
-function OnlineEditorContainer() {
-    const history = useHistory();
-    const [pageTitle, setPageTitle] = useState("Вы приступаете к выполнению задания №1");
+function OnlineEditorContainer(props) {
+    const taskId = props?.match?.params?.taskId;
+    const [pageTitle, setPageTitle] = useState(`Вы приступаете к выполнению задания №${taskId}`);
     const [open, setOpen] = React.useState(false);
 
     const toggleSubmitFormVisibility = () => {
@@ -16,24 +16,33 @@ function OnlineEditorContainer() {
     }
 
     useEffect(() => {
-        const id = setTimeout(() => {
-            clearTimeout(id);
-            setPageTitle("Удачи")
-            const innerId = setTimeout(() => {
-                clearTimeout(innerId)
-                setPageTitle("Вы выполняете задание #1")
+        function showWelcomeMessage() {
+            const id = setTimeout(() => {
+                clearTimeout(id);
+                setPageTitle("Удачи")
+                const innerId = setTimeout(() => {
+                    clearTimeout(innerId)
+                    setPageTitle("Вы выполняете задание #" + taskId)
+                }, 2000)
             }, 2000)
-        }, 2000)
-    }, [])
+        }
+
+        if (!!taskId) {
+            showWelcomeMessage();
+        }
+    }, [taskId])
 
     return (
         <>
-            <Typography>{pageTitle}</Typography>
+            <Typography
+            className={"text-bold"}
+            >{taskId? pageTitle: "Свободный режим разработки"}</Typography>
             <OnlineEditor/>
-            <Button
+            {taskId && <Button
                 variant="outlined"
+                className={"highlight"}
                 onClick={() => toggleSubmitFormVisibility()}
-            >Уже готово!</Button>
+            >Уже готово!</Button>}
             <SendTaskModal
                 toggleHandler={() => toggleSubmitFormVisibility()}
                 open={open}
@@ -42,4 +51,4 @@ function OnlineEditorContainer() {
     )
 }
 
-export default HOCs.withHeader(OnlineEditorContainer);
+export default withRouter(HOCs.withHeader(OnlineEditorContainer));
