@@ -3,9 +3,9 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import {Button} from "@material-ui/core";
 import {LABS_URL} from "../vars";
-import {UploaderTypes} from "./AdminPageContainer";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import TabsContainer from "../tabs/TabsContainer";
+import {UploaderTypes} from "./adminService";
 
 
 function AddExampleOrTask(props) {
@@ -73,6 +73,7 @@ function AddExampleOrTask(props) {
         getData();
 
     }, [])
+
 
     return (
         <>

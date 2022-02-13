@@ -1,24 +1,15 @@
 import React, {useState} from "react";
 import HOCs from "../HOCs";
-import {uploadExample, uploadLab, uploadTask} from "./adminService";
+import {uploaderSwitcher, UploaderTypes} from "./adminService";
 import CustomizedAccordions from "../components/Accordion/Accordion";
 import {Box, Button} from "@mui/material";
 import AddExampleOrTask from "./AddExampleOrTask";
 import {
-    ADD_EXAMPLE_NOT_OK_MESSAGE,
-    ADD_EXAMPLE_OK_MESSAGE,
-    ADD_TASK_NOT_OK_MESSAGE,
-    ADD_TASK_OK_MESSAGE,
     notify
 } from "../vars";
 import {v4 as uuidv4} from "uuid";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-
-export const UploaderTypes = {
-    LAB: "LAB",
-    TASK: "TASK",
-    EXAMPLE: "EXAMPLE"
-}
+import CreateUsers from "./CreateUsers";
 
 function AdminPageContainer() {
     const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +17,7 @@ function AdminPageContainer() {
     const [labId, setLabId] = useState(null);
     let inputRef = React.useRef();
 
-    const uploadLabCallBack = () => {
-        setIsLoading(false);
-        notify("Добавлена новая лабораторная работа!");
-    }
-
-    const uploadTaskCallBack = (message) => {
+    const uploadCallBack = (message) => {
         setIsLoading(false);
         notify(message);
     }
@@ -41,34 +27,6 @@ function AdminPageContainer() {
         callBack()
     }
 
-    async function uploaderSwitcher(e) {
-        switch (uploadType) {
-            case(UploaderTypes.LAB): {
-                uploadLab(e.target, uploadLabCallBack);
-                break;
-            }
-            case(UploaderTypes.TASK): {
-                const response = await uploadTask(e.target, labId);
-                if (response.ok) {
-                    uploadTaskCallBack(ADD_TASK_OK_MESSAGE);
-                } else {
-                    uploadTaskCallBack(ADD_TASK_NOT_OK_MESSAGE);
-                }
-                break;
-            }
-            case(UploaderTypes.EXAMPLE): {
-                const response = await uploadExample(e.target, labId);
-                if (response.ok) {
-                    uploadTaskCallBack(ADD_EXAMPLE_OK_MESSAGE);
-                } else {
-                    uploadTaskCallBack(ADD_EXAMPLE_NOT_OK_MESSAGE);
-                }
-                break;
-            }
-            default:
-                return;
-        }
-    }
 
     return (
         <Box>
@@ -82,7 +40,7 @@ function AdminPageContainer() {
                 key={uuidv4()}
                 accordionConfigObject={{
                     0: {
-                        title: "Добавить лекцию",
+                        title: "Лекции",
                         content: <>
                             <form>
                                 <Button
@@ -95,7 +53,11 @@ function AdminPageContainer() {
                                     variant={"outlined"}
                                 > <UploadFileIcon className={"margin-right-5"}/> Выбрать файл</Button>
                                 <input
-                                    onChange={(e) => isLoadingCover(() => uploaderSwitcher(e))}
+                                    onChange={(e) => {
+                                        isLoadingCover(() => {
+                                            uploaderSwitcher(e, uploadType, uploadCallBack, labId)
+                                        })
+                                    }}
                                     type="file"
                                     ref={inputRef}
                                     style={{display: "none"}}
@@ -104,7 +66,7 @@ function AdminPageContainer() {
                         </>
                     },
                     1: {
-                        title: "Добавить пример или задание",
+                        title: "Примеры и Задания",
                         content: <AddExampleOrTask
                             setUploadType={setUploadType}
                             setLabId={setLabId}
@@ -112,6 +74,10 @@ function AdminPageContainer() {
                                 inputRef.current.click();
                             }}
                         />
+                    },
+                    2: {
+                        title: "Пользователи",
+                        content: <CreateUsers/>
                     }
                 }}
             />

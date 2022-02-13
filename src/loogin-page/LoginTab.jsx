@@ -5,10 +5,10 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import {authUser} from "./loginService";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsAuth} from "../app/authReducer";
+import {authorizeUser, setIsAuth} from "../app/authReducer";
 import {useHistory} from "react-router-dom";
 import {BASE_PATH} from "../App";
-import {encryptInformation} from "../authService";
+import {decryptInformation, encryptInformation, redirectAfterLogin} from "../authService";
 import {
     AUTH_LOGIN_TRY,
     AUTH_NOT_FOUND_STORE,
@@ -30,7 +30,7 @@ const validation = Yup.object().shape({
 })
 
 function LoginTab() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const {
         isAuth
     } = useSelector((state) => state?.auth);
@@ -64,22 +64,32 @@ function LoginTab() {
     })
 
     useEffect(() => {
-        function loadData() {
+        async function loadData() {
+            setIsLoading(() => true)
             notify(AUTH_TRY)
-            const isUserInfo = getValueFromLocalStorage(USER_INFO)
+            const storedUserInformation = getValueFromLocalStorage(USER_INFO)
 
-            if (!isUserInfo) {
+            if (!storedUserInformation && !isAuth) {
                 notify(AUTH_NOT_FOUND_STORE)
                 setIsLoading(() => false)
+            } else {
+                const decryptedUserInformation = decryptInformation(storedUserInformation)?.userInfo;
+
+                const authInformation = {
+                    login: decryptedUserInformation?.data?.login,
+                    password: decryptedUserInformation?.data?.password
+                }
+
+                await dispatch(authorizeUser({
+                    values: authInformation,
+                    redirectAfterLogin: redirectAfterLogin(history)
+                }));
+                await setIsLoading(() => false)
             }
         }
 
         loadData();
 
-    }, [])
-
-    useEffect(() => {
-        setIsLoading(() => false)
     }, [isAuth])
 
     return (

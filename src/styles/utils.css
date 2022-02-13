@@ -35,6 +35,22 @@ a {
     color: #3f51b5 !important;
 }
 
+.highlight-back-red-svg {
+    transition: all ease 0.3s;
+}
+
+.ul-none li {
+    list-style-type: none;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.highlight-back-red-svg:hover svg {
+    color: #ee2443 !important;
+}
+
 .active-navbar-link {
     color: #3f51b5;
 }

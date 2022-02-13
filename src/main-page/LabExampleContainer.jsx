@@ -44,7 +44,7 @@ function LabExampleContainer(props) {
                                             className={"d-flex align-items-center"}
                                         >
                                             <PreviewIcon className={"margin-right-5"}/>
-                                            <span>Просмотреть задание {example?.exampleName?.split(".")[0]}</span>
+                                            <span>Просмотреть пример {example?.exampleName?.split(".")[0]}</span>
                                         </a>
                                     </Button>
                                     <Button
@@ -65,7 +65,7 @@ function LabExampleContainer(props) {
                                             className={" d-flex align-items-center"}
                                         >
                                             <DownloadIcon className={"margin-right-5"}/>
-                                            <span>Скачать задание {example?.exampleName?.split(".")[0]}</span>
+                                            <span>Скачать пример {example?.exampleName?.split(".")[0]}</span>
                                         </a>
                                     </Button>
                                 </Typography>
