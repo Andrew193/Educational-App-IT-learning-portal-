@@ -14,8 +14,9 @@ function AddExampleOrTask(props) {
         setUploadType,
         setLabId,
     } = props;
+
     const [tabsConfig, setTabsConfigObject] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function getData() {
@@ -25,10 +26,27 @@ function AddExampleOrTask(props) {
             const labsContent = [];
 
             if (`${response.status}`.startsWith("2")) {
-                response.data.labs.forEach((lab) => {
+                let sortedLabsByName;
+                if (response?.data?.labs) {
+                    sortedLabsByName = response?.data?.labs?.sort((labA, labB) => {
+                        if (labA.filename < labB.filename) {
+                            return -1;
+                        }
+                        if (labA.filename > labB.filename) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                } else {
+                    sortedLabsByName = [];
+                }
+
+                sortedLabsByName.forEach((lab) => {
                     labsTitles.push(lab.filename.split(".")[0]);
                     labsContent.push(<Typography>
-                        <div>
+                        <div
+                            className={"flex-wrap"}
+                        >
                             <Button
                                 variant={"outlined"}
                                 className={"margin-right-10 d-flex align-items-center"}
@@ -78,7 +96,11 @@ function AddExampleOrTask(props) {
     return (
         <>
             {isLoading && <div className={"loading"} id={"overlay_loader"}/>}
+            <div
+                className={"flex-wrap"}
+            >
             {tabsConfig}
+            </div>
         </>
     )
 }

@@ -6,6 +6,20 @@
     flex: 1 0;
 }
 
+.flex-1-0-25prc {
+    flex: 1 0 25%;
+}
+
+.tooltip-container-class {
+    -webkit-box-shadow: 0 2px 4px -1px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 2px 4px -1px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 2px 4px -1px rgba(34, 60, 80, 0.2);
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 a {
     text-decoration: none;
     color: black;

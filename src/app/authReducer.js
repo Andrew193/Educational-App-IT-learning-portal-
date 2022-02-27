@@ -5,7 +5,8 @@ import {BASE_PATH, LOGIN_PAGE} from "../App";
 
 const initialState = {
     isAuth: null,
-    pathToRedirectAfterLogin: ""
+    pathToRedirectAfterLogin: "",
+    isLoading: true,
 };
 
 export const authorizeUser = createAsyncThunk(
@@ -23,6 +24,7 @@ export const authorizeUser = createAsyncThunk(
 
         if (response.ok) {
             const parsedInfo = await response.json();
+            await thunkAPI.dispatch(setIsLoading(false));
             await thunkAPI.dispatch(setIsAuth({
                 isOk: true,
                 message: AUTH_OK_MESSAGE
@@ -35,6 +37,7 @@ export const authorizeUser = createAsyncThunk(
                 ...parsedInfo,
             }
         } else {
+            await thunkAPI.dispatch(setIsLoading(false));
             notify(AUTH_NOT_OK_MESSAGE);
         }
 
@@ -61,6 +64,9 @@ const authReducer = createSlice({
 
             state.isAuth = isOk
         },
+        setIsLoading: (state, action) => {
+            state.isLoading = action?.payload;
+        },
         setPathToRedirectAfterLogin: (state, action) => {
             state.pathToRedirectAfterLogin = action.payload ===
             LOGIN_PAGE
@@ -84,7 +90,8 @@ const authReducer = createSlice({
 
 export const {
     setIsAuth,
-    setPathToRedirectAfterLogin
+    setPathToRedirectAfterLogin,
+    setIsLoading
 } = authReducer.actions;
 
 export default authReducer.reducer;

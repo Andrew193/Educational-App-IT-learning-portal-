@@ -13,37 +13,55 @@ import PersonIcon from '@mui/icons-material/Person';
 
 import ContainerList from "../components/list/List";
 import {useHistory} from "react-router-dom";
-import {Pages, USER_INFO} from "../vars";
+import {
+    BASE_TOOLTIP_BACKGROUND_COLOR,
+    BASE_TOOLTIP_BORDER_COLOR,
+    BASE_TOOLTIP_EFFECT,
+    BASE_TOOLTIP_TEXT_COLOR,
+    Pages,
+    USER_INFO
+} from "../vars";
 import {useDispatch} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
 import {removeValueFromLocalStorage} from "../localStorageService";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import ReactTooltip from "react-tooltip";
 
 const sidebarItems = [
     {
         text: 'Dashboard',
         path: Pages.BASE,
-        icon: <HomeIcon/>
+        icon: <HomeIcon/>,
+        dataFor: "main",
+        dataTip: "Home Page",
     },
     {
         text: 'Users',
         path: Pages.USERS,
-        icon: <GroupIcon/>
+        icon: <GroupIcon/>,
+        dataFor: "main",
+        dataTip: "Users Page",
     },
     {
         text: 'Admin Panel',
         path: Pages.ADMIN_PANEL,
-        icon: <AdminPanelSettingsIcon/>
+        icon: <AdminPanelSettingsIcon/>,
+        dataFor: "main",
+        dataTip: "Admin Panel Page",
     },
     {
         text: 'Simple editor',
         path: Pages.EDITOR,
-        icon: <HomeRepairServiceIcon/>
+        icon: <HomeRepairServiceIcon/>,
+        dataFor: "main",
+        dataTip: "Simple Editor Page",
     },
     {
         text: 'IDE',
         path: Pages.IDE,
-        icon: <BuildIcon/>
+        icon: <BuildIcon/>,
+        dataFor: "main",
+        dataTip: "IDE Page",
     }
 ];
 
@@ -168,6 +186,16 @@ function PageHeader(props) {
                 <div className={"header_toolbar"}/>
                 {children}
             </main>
+            <ReactTooltip
+                id="main"
+                className={"tooltip-container-class"}
+                border
+                borderColor={BASE_TOOLTIP_BORDER_COLOR}
+                effect={BASE_TOOLTIP_EFFECT}
+                multiline={true}
+                textColor={BASE_TOOLTIP_TEXT_COLOR}
+                backgroundColor={BASE_TOOLTIP_BACKGROUND_COLOR}
+            />
         </div>
     )
 }

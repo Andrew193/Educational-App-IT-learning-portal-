@@ -6,7 +6,22 @@ import LabTaskContainer from "./LabTaskContainer";
 import LabExampleContainer from "./LabExampleContainer";
 
 export function makeLabsList(response) {
-    return response.data.labs.map((lab) => {
+    let sortedLabsByName;
+    if (response?.data?.labs) {
+        sortedLabsByName = response?.data?.labs?.sort((labA, labB) => {
+            if (labA.filename < labB.filename) {
+                return -1;
+            }
+            if (labA.filename > labB.filename) {
+                return 1;
+            }
+            return 0;
+        })
+    } else {
+        sortedLabsByName = [];
+    }
+
+    return sortedLabsByName.map((lab) => {
         return {
             forId: lab.filename.split(".")[0],
             title: <>

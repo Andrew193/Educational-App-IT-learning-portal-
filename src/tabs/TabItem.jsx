@@ -13,7 +13,7 @@ function TabItem(props) {
             onClick={() => {
                 setIsOpened();
             }}
-            className={"flex-1-0 back-tab border-right-1p tab"}
+            className={"flex-1-0-25prc back-tab border-right-1p tab"}
         >
             <Button
                 className={`border-unset border-radius-unset ${isOpened ? "border-bottom-selected" : "invisible-border-bottom-3"}`}

@@ -1,8 +1,10 @@
 import PageHeader from "./page-header/PageHeader";
-
 function withHeader(WrappedComponent) {
     function WithHeader(props) {
-        return (<PageHeader> <WrappedComponent {...props} /></PageHeader>)
+        return (
+            <PageHeader>
+                <WrappedComponent {...props} />
+            </PageHeader>)
     }
 
     const wrappedComponentName = WrappedComponent.displayName

@@ -33,7 +33,7 @@ function TabsContainer(props) {
             className={"d-flex f-direction"}
         >
             <Box
-                className={"d-flex w-100 p-unset list-style-type-unset"}
+                className={"d-flex flex-wrap w-100 p-unset list-style-type-unset"}
             >
                 {
                     tabsCaptions?.map((caption, index) => <TabItem

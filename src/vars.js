@@ -22,6 +22,11 @@ export const USER_INFO = "userInformation";
 export const ASC = "ASC";
 export const DESC = "DESC";
 
+export const BASE_TOOLTIP_BACKGROUND_COLOR = "#f5f5f5";
+export const BASE_TOOLTIP_TEXT_COLOR = "black";
+export const BASE_TOOLTIP_EFFECT = "solid";
+export const BASE_TOOLTIP_BORDER_COLOR = "black";
+
 export const notify = (message) => toast(message);
 export const AUTH_OK_MESSAGE = "Доступ предоставлен";
 export const AUTH_NOT_OK_MESSAGE = "В доступе отказано";
