@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {AppBar, Box, Divider, Drawer, IconButton, Menu, MenuItem, Toolbar} from "@mui/material";
 import {AccountCircle} from "@mui/icons-material";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -23,49 +23,63 @@ import {
 } from "../vars";
 import {useDispatch} from "react-redux";
 import {setIsAuth} from "../app/authReducer";
-import {removeValueFromLocalStorage} from "../localStorageService";
+import {getValueFromLocalStorage, removeValueFromLocalStorage} from "../localStorageService";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import ReactTooltip from "react-tooltip";
-
-const sidebarItems = [
-    {
-        text: 'Dashboard',
-        path: Pages.BASE,
-        icon: <HomeIcon/>,
-        dataFor: "main",
-        dataTip: "Home Page",
-    },
-    {
-        text: 'Users',
-        path: Pages.USERS,
-        icon: <GroupIcon/>,
-        dataFor: "main",
-        dataTip: "Users Page",
-    },
-    {
-        text: 'Admin Panel',
-        path: Pages.ADMIN_PANEL,
-        icon: <AdminPanelSettingsIcon/>,
-        dataFor: "main",
-        dataTip: "Admin Panel Page",
-    },
-    {
-        text: 'Simple editor',
-        path: Pages.EDITOR,
-        icon: <HomeRepairServiceIcon/>,
-        dataFor: "main",
-        dataTip: "Simple Editor Page",
-    },
-    {
-        text: 'IDE',
-        path: Pages.IDE,
-        icon: <BuildIcon/>,
-        dataFor: "main",
-        dataTip: "IDE Page",
-    }
-];
+import {decryptInformation} from "../authService";
+import {createDeepCopy} from "../utils";
 
 function PageHeader(props) {
+    const userInfo = decryptInformation(getValueFromLocalStorage(USER_INFO));
+
+    const fixedSidebarItems = useMemo(() => {
+        let sidebarItems = [
+            {
+                text: 'Dashboard',
+                path: Pages.BASE,
+                icon: <HomeIcon/>,
+                dataFor: "main",
+                dataTip: "Home Page",
+            },
+            {
+                text: 'Users',
+                path: Pages.USERS,
+                icon: <GroupIcon/>,
+                dataFor: "main",
+                dataTip: "Users Page",
+            },
+            {
+                text: 'Simple editor',
+                path: Pages.EDITOR,
+                icon: <HomeRepairServiceIcon/>,
+                dataFor: "main",
+                dataTip: "Simple Editor Page",
+            },
+            {
+                text: 'IDE',
+                path: Pages.IDE,
+                icon: <BuildIcon/>,
+                dataFor: "main",
+                dataTip: "IDE Page",
+            }
+        ];
+
+        if (!userInfo) {
+            return sidebarItems;
+        } else {
+            if (userInfo?.userInfo?.data?.role === "Admin") {
+                sidebarItems.push( {
+                    text: 'Admin Panel',
+                    path: Pages.ADMIN_PANEL,
+                    icon: <AdminPanelSettingsIcon/>,
+                    dataFor: "main",
+                    dataTip: "Admin Panel Page",
+                },)
+            }
+                return sidebarItems;
+        }
+    }, [userInfo])
+
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const history = useHistory();
@@ -180,7 +194,7 @@ function PageHeader(props) {
                     </IconButton>
                 </div>
                 <Divider/>
-                <ContainerList sidebarItems={sidebarItems}/>
+                <ContainerList sidebarItems={fixedSidebarItems}/>
             </Drawer>
             <main className={"header_content"}>
                 <div className={"header_toolbar"}/>

@@ -15,12 +15,14 @@ function UserActions(props) {
     } = props;
 
     const dataToDownload = useMemo(() => {
-        if (userInformation?.role === "admin") {
-            return userInformation;
-        } else {
-            const userInformationCopy = createDeepCopy(userInformation);
-            delete userInformationCopy?.password;
-            return userInformationCopy;
+        if (userInformation) {
+            if (userInformation?.role === "admin") {
+                return userInformation;
+            } else {
+                const userInformationCopy = createDeepCopy(userInformation);
+                delete userInformationCopy?.password;
+                return userInformationCopy;
+            }
         }
     }, [userInformation?.role])
 

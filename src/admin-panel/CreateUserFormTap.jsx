@@ -69,7 +69,6 @@ function CreateUserFormTap() {
         getData();
     }, [])
 
-    console.log(formik)
     return (
         <Box
             className={"d-flex f-direction"}
