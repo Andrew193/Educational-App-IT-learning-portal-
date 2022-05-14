@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import TabsContainer from "../tabs/TabsContainer";
 import CreateUsersFromFileTap from "./CreateUsersFromFileTap";
+import CreateUserFormTap from "./CreateUserFormTap";
 
 
 function CreateUsers() {
@@ -18,7 +19,7 @@ function CreateUsers() {
                         <CreateUsersFromFileTap
                             setIsLoading={setIsLoading}
                         />,
-                        <></>
+                        <CreateUserFormTap />
                     ]}
                 />
             ))

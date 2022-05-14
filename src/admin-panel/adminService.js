@@ -7,8 +7,8 @@ import {
     DELETE_OK,
     EXAMPLES_URL, LAB_CREATED_OK,
     LABS_URL,
-    notify,
-    TASKS_URL, USERS_URL
+    notify, ROLES_URL,
+    TASKS_URL, USER_CREATE_NOT_OK, USER_CREATE_OK, USER_CREATE_START, USERS_URL
 } from "../vars";
 
 export const UploaderTypes = {
@@ -51,19 +51,34 @@ export async function uploaderSwitcher(e, uploadType, uploadCallBack, labId) {
     }
 }
 
+export function getAllRoles() {
+    return fetch(ROLES_URL)
+        .then((response) => response)
+        .catch((error) => error)
+}
+
 export function createUserFromFile(e, callBack) {
     let formData = new FormData();
     formData.append("file", e.files[0]);
+
+    notify(USER_CREATE_START);
 
     return fetch(USERS_URL + CSV_SUF, {
             method: "POST",
             body: formData
         }
     )
-        .then((response) => response)
-        .catch((error) => error)
+        .then((response) => {
+            notify(USER_CREATE_OK)
+            return response;
+        })
+        .catch((error) => {
+            notify(USER_CREATE_NOT_OK)
+            return error;
+        })
         .finally(() => callBack())
 }
+
 
 export function uploadLab(lab, callBack) {
     let formData = new FormData();

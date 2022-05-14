@@ -4,6 +4,8 @@ import {USERS_PAGE} from "../App";
 import {useHistory} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EditIcon from '@mui/icons-material/Edit';
+import {useMemo} from "react";
+import {createDeepCopy} from "../utils";
 
 function UserActions(props) {
     const history = useHistory();
@@ -11,6 +13,16 @@ function UserActions(props) {
         userInformation,
         userId,
     } = props;
+
+    const dataToDownload = useMemo(() => {
+        if (userInformation?.role === "admin") {
+            return userInformation;
+        } else {
+            const userInformationCopy = createDeepCopy(userInformation);
+            delete userInformationCopy?.password;
+            return userInformationCopy;
+        }
+    }, [userInformation?.role])
 
     return (
         <Box
@@ -40,7 +52,7 @@ function UserActions(props) {
 
             <CsvDownload
                 className={"MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"}
-                data={[userInformation]}
+                data={[dataToDownload]}
                 filename={`${userInformation?.username}.csv`}
             />
         </Box>

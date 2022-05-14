@@ -4,7 +4,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import {USERS_PAGE} from "../App";
 import GroupIcon from "@mui/icons-material/Group";
 import {useHistory} from "react-router-dom";
-import {notify, SEARCH_START} from "../vars";
 
 
 function UserInformationPart1(props) {
