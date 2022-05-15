@@ -22,7 +22,7 @@ function OnlineEditorContainer(props) {
                 setPageTitle("Удачи")
                 const innerId = setTimeout(() => {
                     clearTimeout(innerId)
-                    setPageTitle("Вы выполняете задание #" + taskId)
+                    setPageTitle("Вы выполняете задание: " + taskId)
                 }, 2000)
             }, 2000)
         }

@@ -4,12 +4,16 @@ import {Button} from "@material-ui/core";
 import PreviewIcon from "@mui/icons-material/Preview";
 import DownloadIcon from "@mui/icons-material/Download";
 import React from "react";
+import {Pages} from "../vars";
+import {useHistory} from "react-router-dom";
 
 
 function LabTaskContainer(props) {
     const {
         lab
     } = props;
+
+    const history = useHistory();
 
     return (
         <Typography>
@@ -30,7 +34,7 @@ function LabTaskContainer(props) {
                         <>
                             <Button
                                 variant={"outlined"}
-                                className={"margin-right-10 highlight"}
+                                className={"margin-right-10 highlight flex-1-0"}
                             >
                                 <a
                                     href={lab?.taskdata?.webViewLink}
@@ -41,8 +45,17 @@ function LabTaskContainer(props) {
                                 </a>
                             </Button>
                             <Button
+                                className={"flex-1-0 margin-left-10 margin-right-10 d-flex align-items-center"}
+                                onClick={() => {
+                                    history.push(Pages.IDE + `/${lab?.taskdata?.taskName?.split(".")[0]}`)
+                                }}
+                            >
+                                <PreviewIcon className={"margin-right-5"}/>
+                                <span>Выполнить онлайн</span>
+                            </Button>
+                            <Button
                                 variant={"outlined"}
-                                className={"highlight"}
+                                className={"highlight flex-1-0"}
                             >
                                 <a
                                     href={lab?.taskdata?.webContentLink}

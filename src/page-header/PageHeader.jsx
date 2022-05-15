@@ -67,7 +67,7 @@ function PageHeader(props) {
         if (!userInfo) {
             return sidebarItems;
         } else {
-            if (userInfo?.userInfo?.data?.role === "Admin") {
+            if (userInfo?.userInfo?.data?.role?.toLowerCase() === "admin") {
                 sidebarItems.push( {
                     text: 'Admin Panel',
                     path: Pages.ADMIN_PANEL,
